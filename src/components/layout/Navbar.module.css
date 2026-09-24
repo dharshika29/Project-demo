@@ -10,7 +10,7 @@
   transition: all var(--transition-normal);
 }
 
-.navbar-container {
+.navbarContainer {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -18,7 +18,7 @@
   justify-content: space-between;
 }
 
-.navbar-brand {
+.navbarBrand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -29,7 +29,7 @@
   color: var(--text-primary);
 }
 
-.navbar-logo-icon {
+.navbarLogoIcon {
   width: 34px;
   height: 34px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
@@ -40,12 +40,12 @@
   font-size: 1rem;
 }
 
-.navbar-links {
+.navbarLinks {
   display: flex;
   gap: 1rem;
 }
 
-.nav-link {
+.navLink {
   padding: 0.5rem 1rem;
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
@@ -53,17 +53,17 @@
   transition: all var(--transition-fast);
 }
 
-.nav-link:hover {
+.navLink:hover {
   color: var(--text-primary);
   background-color: rgba(255, 255, 255, 0.05);
 }
 
-.nav-link.active {
+.active {
   color: #ffffff;
   background: var(--primary);
 }
 
-.theme-toggle {
+.themeToggle {
   padding: 0.45rem 0.9rem;
   border-radius: var(--radius-full);
   background-color: var(--bg-card-hover);
@@ -74,6 +74,6 @@
   transition: all var(--transition-fast);
 }
 
-.theme-toggle:hover {
+.themeToggle:hover {
   border-color: var(--border-focus);
 }
