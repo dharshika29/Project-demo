@@ -6,14 +6,14 @@
   text-align: center;
 }
 
-.footer-container {
+.footerContainer {
   max-width: 1200px;
   margin: 0 auto;
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
-.footer-subtext {
+.footerSubtext {
   margin-top: 0.4rem;
   font-size: 0.8rem;
   color: var(--text-muted);

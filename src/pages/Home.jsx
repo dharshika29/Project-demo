@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../components/common/Button';
-import './Home.css';
+import styles from './Home.module.css';
 
 export default function Home({ onNavigateAbout }) {
   const [count, setCount] = useState(0);
@@ -29,18 +29,18 @@ export default function Home({ onNavigateAbout }) {
   ];
 
   return (
-    <div className="home-container">
-      <section className="hero-section">
-        <div className="badge">✨ Standard React Project Setup</div>
-        <h1 className="hero-title">
-          Modern React <span className="gradient-text">Architecture</span>
+    <div className={styles.homeContainer}>
+      <section className={styles.heroSection}>
+        <div className={styles.badge}>✨ Standard React Project Setup</div>
+        <h1 className={styles.heroTitle}>
+          Modern React <span className={styles.gradientText}>Architecture</span>
         </h1>
-        <p className="hero-description">
+        <p className={styles.heroDescription}>
           Clean, scalable, and developer-friendly folder structure ready for your components,
           state, pages, and API integration.
         </p>
 
-        <div className="hero-actions">
+        <div className={styles.heroActions}>
           <Button variant="primary" size="lg" onClick={() => setCount((c) => c + 1)}>
             Counter: {count}
           </Button>
@@ -50,12 +50,12 @@ export default function Home({ onNavigateAbout }) {
         </div>
       </section>
 
-      <section className="features-grid">
+      <section className={styles.featuresGrid}>
         {features.map((feature, idx) => (
-          <div key={idx} className="feature-card">
-            <div className="feature-icon">{feature.icon}</div>
-            <h3 className="feature-title">{feature.title}</h3>
-            <p className="feature-desc">{feature.description}</p>
+          <div key={idx} className={styles.featureCard}>
+            <div className={styles.featureIcon}>{feature.icon}</div>
+            <h3 className={styles.featureTitle}>{feature.title}</h3>
+            <p className={styles.featureDesc}>{feature.description}</p>
           </div>
         ))}
       </section>

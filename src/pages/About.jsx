@@ -1,5 +1,5 @@
 import React from 'react';
-import './About.css';
+import styles from './About.module.css';
 
 export default function About() {
   const folders = [
@@ -38,26 +38,26 @@ export default function About() {
   ];
 
   return (
-    <div className="about-container">
-      <div className="about-header">
-        <h1 className="about-title">React Project Folder Structure</h1>
-        <p className="about-subtitle">
+    <div className={styles.aboutContainer}>
+      <div className={styles.aboutHeader}>
+        <h1 className={styles.aboutTitle}>React Project Folder Structure</h1>
+        <p className={styles.aboutSubtitle}>
           Intha structure unga project-ai clean and modular-a maintain panna help pannum.
         </p>
       </div>
 
-      <div className="folder-list">
+      <div className={styles.folderList}>
         {folders.map((item, idx) => (
-          <div key={idx} className="folder-card">
-            <div className="folder-badge">📁 {item.name}</div>
-            <p className="folder-desc">{item.desc}</p>
+          <div key={idx} className={styles.folderCard}>
+            <div className={styles.folderBadge}>📁 {item.name}</div>
+            <p className={styles.folderDesc}>{item.desc}</p>
           </div>
         ))}
       </div>
 
-      <div className="quick-commands">
+      <div className={styles.quickCommands}>
         <h2>🚀 Quick Commands</h2>
-        <div className="command-box">
+        <div className={styles.commandBox}>
           <p><strong>1. Install dependencies:</strong></p>
           <code>npm install</code>
           <p><strong>2. Start development server:</strong></p>
