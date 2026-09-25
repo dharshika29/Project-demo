@@ -598,38 +598,22 @@
   color: var(--text-muted);
 }
 
-.swatchRow {
+.sizeRow {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.75rem;
   margin-bottom: 1.2rem;
   padding: 0.5rem 0;
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
 }
 
-.colorDots {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.colorDot {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.colorDot:hover {
-  transform: scale(1.2);
-}
-
-.colorDotActive {
-  border-color: var(--gold);
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-  transform: scale(1.15);
+.sizeLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .sizePills {

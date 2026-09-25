@@ -397,28 +397,11 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                     <span className={styles.reviewCount}>({dress.reviews})</span>
                   </div>
 
-                  {/* Swatches & Sizes Preview */}
-                  <div className={styles.swatchRow} onClick={(e) => e.stopPropagation()}>
-                    <div className={styles.colorDots}>
-                      {dress.colors.map((color, idx) => (
-                        <span
-                          key={idx}
-                          className={`${styles.colorDot} ${
-                            activeColor === color ? styles.colorDotActive : ''
-                          }`}
-                          style={{ backgroundColor: color }}
-                          onClick={() =>
-                            setSelectedColors((prev) => ({
-                              ...prev,
-                              [dress.id]: color
-                            }))
-                          }
-                        />
-                      ))}
-                    </div>
-
+                  {/* Sizes Preview */}
+                  <div className={styles.sizeRow} onClick={(e) => e.stopPropagation()}>
+                    <span className={styles.sizeLabel}>Sizes:</span>
                     <div className={styles.sizePills}>
-                      {dress.sizes.slice(0, 3).map((size) => (
+                      {dress.sizes.map((size) => (
                         <span
                           key={size}
                           className={`${styles.sizePill} ${
@@ -434,11 +417,6 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                           {size}
                         </span>
                       ))}
-                      {dress.sizes.length > 3 && (
-                        <span className={styles.sizeMore}>
-                          +{dress.sizes.length - 3}
-                        </span>
-                      )}
                     </div>
                   </div>
 
