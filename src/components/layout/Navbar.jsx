@@ -103,11 +103,7 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
               >
                 <button
                   className={`${styles.navLink} ${
-                    activePage === 'home' && link.page === 'home' && link.label === 'Collections'
-                      ? styles.active
-                      : activePage === link.page && link.page === 'about'
-                      ? styles.active
-                      : ''
+                    activePage === link.page ? styles.active : ''
                   }`}
                   onClick={() => handleNavClick(link)}
                 >
