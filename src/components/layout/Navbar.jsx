@@ -43,11 +43,10 @@ const COLLECTIONS_DROPDOWN = [
 ];
 
 const NAV_LINKS = [
+  { label: 'Home', page: 'home' },
   { label: 'Collections', page: 'collections', hasDropdown: true },
-  { label: 'New Arrivals', page: 'new-arrivals' },
-  { label: 'Lookbook', page: 'lookbook' },
-  { label: 'On Sale', page: 'sale', badge: 'SALE' },
-  { label: 'Our Story', page: 'about' }
+  { label: 'About Us', page: 'about' },
+  { label: 'Contact Us', page: 'contact' }
 ];
 
 export default function Navbar({ activePage, setActivePage, cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
@@ -206,6 +205,13 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
         {mobileMenuOpen && (
           <div className={styles.mobileMenu}>
             {/* Mobile - Collection categories directly */}
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => handleNavClick({ page: 'home' })}
+            >
+              🏠 Home
+            </button>
+            <div className={styles.mobileDivider} />
             <div className={styles.mobileSectionLabel}>Collections</div>
             {COLLECTIONS_DROPDOWN.map((item) => (
               <button
@@ -220,15 +226,15 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
             <div className={styles.mobileDivider} />
             <button
               className={styles.mobileNavLink}
-              onClick={() => handleNavClick({ page: 'lookbook' })}
+              onClick={() => handleNavClick({ page: 'about' })}
             >
-              📖 Lookbook
+              📖 About Us
             </button>
             <button
               className={styles.mobileNavLink}
-              onClick={() => { setActivePage('about'); setMobileMenuOpen(false); }}
+              onClick={() => handleNavClick({ page: 'contact' })}
             >
-              💬 Our Story
+              💬 Contact Us
             </button>
           </div>
         )}

@@ -11,6 +11,7 @@ import EveningGowns from './pages/EveningGowns';
 import SilkFestive from './pages/SilkFestive';
 import SummerMaxi from './pages/SummerMaxi';
 import CocktailSparkle from './pages/CocktailSparkle';
+import Contact from './pages/Contact';
 import styles from './App.module.css';
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
         {activePage === 'silk-festive' && <SilkFestive />}
         {activePage === 'summer-maxi' && <SummerMaxi />}
         {activePage === 'cocktail-sparkle' && <CocktailSparkle />}
+        {activePage === 'contact' && <Contact />}
       </main>
 
       <Footer />
