@@ -1,30 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Navbar.module.css';
 
-const NAV_LINKS = [
-  { label: 'Collections', page: 'home', anchor: '#collections' },
-  { label: 'New Arrivals', page: 'home', anchor: '#collections' },
-  { label: 'Lookbook', page: 'home', anchor: '#spotlight' },
-  { label: 'On Sale', page: 'home', anchor: '#collections', badge: 'SALE' },
-  { label: 'Our Story', page: 'about', anchor: null }
+// Collections dropdown items — all category names from the e-commerce store
+const COLLECTIONS_DROPDOWN = [
+  {
+    label: 'Evening Gowns',
+    desc: 'Red carpet silk & tulle silhouettes',
+    icon: '👗'
+  },
+  {
+    label: 'Silk & Festive',
+    desc: 'Banarasi, zardozi & bridal luxury',
+    icon: '✨'
+  },
+  {
+    label: 'Summer Maxi',
+    desc: 'Breezy linen, silk & floral maxis',
+    icon: '🌸'
+  },
+  {
+    label: 'Cocktail Sparkle',
+    desc: 'Sequin, feather & crystal party dresses',
+    icon: '💎'
+  },
+  {
+    label: 'New Arrivals',
+    desc: 'Just dropped from runway 2026',
+    icon: '🆕'
+  },
+  {
+    label: 'Sale — Up to 40% Off',
+    desc: 'Use code AURA40 at checkout',
+    icon: '🏷️',
+    highlight: true
+  }
 ];
 
-export default function Navbar({ activePage, setActivePage, cartCount = 0, wishlistCount = 0 }) {
+const NAV_LINKS = [
+  { label: 'Collections', page: 'collections', hasDropdown: true },
+  { label: 'New Arrivals', page: 'new-arrivals' },
+  { label: 'Lookbook', page: 'lookbook' },
+  { label: 'On Sale', page: 'sale', badge: 'SALE' },
+  { label: 'Our Story', page: 'about' }
+];
+
+export default function Navbar({ activePage, setActivePage, cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
   const { theme, toggleTheme } = useTheme();
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownTimer = useRef(null);
 
-  const handleNavClick = (link) => {
+  const handleNavClick = (link, categoryLabel) => {
     setActivePage(link.page);
     setMobileMenuOpen(false);
-    if (link.anchor && link.page === 'home') {
-      setTimeout(() => {
-        const el = document.querySelector(link.anchor);
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
+    setDropdownOpen(false);
+    if (categoryLabel && onCategoryFilter) {
+      onCategoryFilter(categoryLabel);
     }
+  };
+
+  const handleDropdownEnter = () => {
+    clearTimeout(dropdownTimer.current);
+    setDropdownOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimer.current = setTimeout(() => setDropdownOpen(false), 180);
   };
 
   return (
@@ -49,18 +93,54 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
           {/* Desktop Nav Links */}
           <nav className={styles.navbarLinks}>
             {NAV_LINKS.map((link) => (
-              <button
+              <div
                 key={link.label}
-                className={`${styles.navLink} ${
-                  activePage === link.page && !link.anchor ? styles.active : ''
-                } ${link.page === 'home' && activePage === 'home' && link.label === 'Collections' ? styles.active : ''}`}
-                onClick={() => handleNavClick(link)}
+                className={styles.navItem}
+                onMouseEnter={link.hasDropdown ? handleDropdownEnter : undefined}
+                onMouseLeave={link.hasDropdown ? handleDropdownLeave : undefined}
               >
-                {link.label}
-                {link.badge && (
-                  <span className={styles.navBadge}>{link.badge}</span>
+                <button
+                  className={`${styles.navLink} ${
+                    activePage === 'home' && link.page === 'home' && link.label === 'Collections'
+                      ? styles.active
+                      : activePage === link.page && link.page === 'about'
+                      ? styles.active
+                      : ''
+                  }`}
+                  onClick={() => handleNavClick(link)}
+                >
+                  {link.label}
+                  {link.badge && (
+                    <span className={styles.navBadge}>{link.badge}</span>
+                  )}
+                  {link.hasDropdown && (
+                    <span className={`${styles.dropdownArrow} ${dropdownOpen ? styles.arrowUp : ''}`}>
+                      ▾
+                    </span>
+                  )}
+                </button>
+
+                {/* Dropdown Menu for Collections */}
+                {link.hasDropdown && dropdownOpen && (
+                  <div className={styles.dropdown}>
+                    <div className={styles.dropdownHeader}>Browse by Category</div>
+                    {COLLECTIONS_DROPDOWN.map((item) => (
+                      <button
+                        key={item.label}
+                        className={`${styles.dropdownItem} ${item.highlight ? styles.dropdownItemHighlight : ''}`}
+                        onClick={() => handleNavClick(link, item.label)}
+                      >
+                        <span className={styles.dropdownIcon}>{item.icon}</span>
+                        <span className={styles.dropdownText}>
+                          <span className={styles.dropdownLabel}>{item.label}</span>
+                          <span className={styles.dropdownDesc}>{item.desc}</span>
+                        </span>
+                        <span className={styles.dropdownArrowRight}>›</span>
+                      </button>
+                    ))}
+                  </div>
                 )}
-              </button>
+              </div>
             ))}
           </nav>
 
@@ -127,18 +207,31 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
         {/* Mobile Menu Drawer */}
         {mobileMenuOpen && (
           <div className={styles.mobileMenu}>
-            {NAV_LINKS.map((link) => (
+            {/* Mobile - Collection categories directly */}
+            <div className={styles.mobileSectionLabel}>Collections</div>
+            {COLLECTIONS_DROPDOWN.map((item) => (
               <button
-                key={link.label}
-                className={styles.mobileNavLink}
-                onClick={() => handleNavClick(link)}
+                key={item.label}
+                className={`${styles.mobileNavLink} ${item.highlight ? styles.mobileNavLinkHighlight : ''}`}
+                onClick={() => handleNavClick(NAV_LINKS[0], item.label)}
               >
-                {link.label}
-                {link.badge && (
-                  <span className={styles.navBadgeMobile}>{link.badge}</span>
-                )}
+                <span>{item.icon}</span>
+                <span>{item.label}</span>
               </button>
             ))}
+            <div className={styles.mobileDivider} />
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => handleNavClick({ page: 'lookbook' })}
+            >
+              📖 Lookbook
+            </button>
+            <button
+              className={styles.mobileNavLink}
+              onClick={() => { setActivePage('about'); setMobileMenuOpen(false); }}
+            >
+              💬 Our Story
+            </button>
           </div>
         )}
       </header>

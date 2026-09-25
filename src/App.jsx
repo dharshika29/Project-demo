@@ -3,6 +3,10 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import Collections from './pages/Collections';
+import NewArrivals from './pages/NewArrivals';
+import Lookbook from './pages/Lookbook';
+import Sale from './pages/Sale';
 import styles from './App.module.css';
 
 export default function App() {
@@ -30,6 +34,10 @@ export default function App() {
           />
         )}
         {activePage === 'about' && <About />}
+        {activePage === 'collections' && <Collections />}
+        {activePage === 'new-arrivals' && <NewArrivals />}
+        {activePage === 'lookbook' && <Lookbook />}
+        {activePage === 'sale' && <Sale />}
       </main>
 
       <Footer />
