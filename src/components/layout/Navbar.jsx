@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Navbar.module.css';
 
@@ -49,8 +50,11 @@ const NAV_LINKS = [
   { label: 'Contact Us', page: 'contact' }
 ];
 
-export default function Navbar({ activePage, setActivePage, cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
+export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const activePage = location.pathname.substring(1) || 'home';
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -58,7 +62,7 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
   const dropdownTimer = useRef(null);
 
   const handleNavClick = (link) => {
-    setActivePage(link.page);
+    navigate(`/${link.page}`);
     setMobileMenuOpen(false);
     setDropdownOpen(false);
   };
