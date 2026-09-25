@@ -35,10 +35,10 @@
 /* Top Announcement Bar */
 .announcementBar {
   background: linear-gradient(90deg, #18181b 0%, #2e2616 50%, #18181b 100%);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-  padding: 0.5rem 1rem;
-  font-size: 0.8rem;
-  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  color: #f8fafc;
   text-align: center;
 }
 

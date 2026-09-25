@@ -16,6 +16,11 @@
   --border-color: rgba(255, 255, 255, 0.1);
   --border-focus: rgba(197, 155, 39, 0.5);
 
+  /* Text Colors for Dark Theme */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
   /* Typography */
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
