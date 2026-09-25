@@ -8,6 +8,7 @@ import styles from './App.module.css';
 export default function App() {
   const [activePage, setActivePage] = useState('home');
   const [cartCount, setCartCount] = useState(2);
+  const [wishlistCount, setWishlistCount] = useState(2);
 
   return (
     <div className={styles.appLayout}>
@@ -15,6 +16,7 @@ export default function App() {
         activePage={activePage}
         setActivePage={setActivePage}
         cartCount={cartCount}
+        wishlistCount={wishlistCount}
       />
 
       <main className={styles.appContent}>
@@ -23,6 +25,8 @@ export default function App() {
             onNavigateAbout={() => setActivePage('about')}
             cartCount={cartCount}
             setCartCount={setCartCount}
+            wishlistCount={wishlistCount}
+            setWishlistCount={setWishlistCount}
           />
         )}
         {activePage === 'about' && <About />}
