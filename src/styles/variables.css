@@ -1,23 +1,23 @@
 :root {
-  /* Color Palette - Modern Indigo / Cyan / Slate */
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
-  --primary-glow: rgba(99, 102, 241, 0.35);
-  --secondary: #06b6d4;
+  /* Color Palette - Modern Indigo / Cyan / Slate & Luxury Gold */
+  --primary: #c59b27;
+  --primary-hover: #b3881b;
+  --primary-glow: rgba(197, 155, 39, 0.35);
+  --secondary: #e07a5f;
   --accent: #f43f5e;
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --emerald: #059669;
 
   /* Neutral Dark Theme by default */
-  --bg-main: #0b0f19;
-  --bg-card: rgba(17, 24, 39, 0.75);
-  --bg-card-hover: rgba(31, 41, 55, 0.85);
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(99, 102, 241, 0.5);
+  --bg-main: #0c0f17;
+  --bg-card: rgba(18, 24, 38, 0.85);
+  --bg-card-hover: rgba(30, 41, 59, 0.95);
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-focus: rgba(197, 155, 39, 0.5);
 
   /* Typography */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
