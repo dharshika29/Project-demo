@@ -2,38 +2,43 @@ import React, { useState, useRef } from 'react';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Navbar.module.css';
 
-// Collections dropdown items — all category names from the e-commerce store
 const COLLECTIONS_DROPDOWN = [
   {
     label: 'Evening Gowns',
     desc: 'Red carpet silk & tulle silhouettes',
-    icon: '👗'
+    icon: '👗',
+    page: 'evening-gowns'
   },
   {
     label: 'Silk & Festive',
     desc: 'Banarasi, zardozi & bridal luxury',
-    icon: '✨'
+    icon: '✨',
+    page: 'silk-festive'
   },
   {
     label: 'Summer Maxi',
     desc: 'Breezy linen, silk & floral maxis',
-    icon: '🌸'
+    icon: '🌸',
+    page: 'summer-maxi'
   },
   {
     label: 'Cocktail Sparkle',
     desc: 'Sequin, feather & crystal party dresses',
-    icon: '💎'
+    icon: '💎',
+    page: 'cocktail-sparkle'
   },
   {
     label: 'New Arrivals',
     desc: 'Just dropped from runway 2026',
-    icon: '🆕'
+    icon: '🆕',
+    page: 'new-arrivals'
   },
   {
     label: 'Sale — Up to 40% Off',
     desc: 'Use code AURA40 at checkout',
     icon: '🏷️',
-    highlight: true
+    highlight: true,
+    page: 'sale'
   }
 ];
 
@@ -53,13 +58,10 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownTimer = useRef(null);
 
-  const handleNavClick = (link, categoryLabel) => {
+  const handleNavClick = (link) => {
     setActivePage(link.page);
     setMobileMenuOpen(false);
     setDropdownOpen(false);
-    if (categoryLabel && onCategoryFilter) {
-      onCategoryFilter(categoryLabel);
-    }
   };
 
   const handleDropdownEnter = () => {
@@ -128,7 +130,7 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
                       <button
                         key={item.label}
                         className={`${styles.dropdownItem} ${item.highlight ? styles.dropdownItemHighlight : ''}`}
-                        onClick={() => handleNavClick(link, item.label)}
+                        onClick={() => handleNavClick({ page: item.page })}
                       >
                         <span className={styles.dropdownIcon}>{item.icon}</span>
                         <span className={styles.dropdownText}>
@@ -213,7 +215,7 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
               <button
                 key={item.label}
                 className={`${styles.mobileNavLink} ${item.highlight ? styles.mobileNavLinkHighlight : ''}`}
-                onClick={() => handleNavClick(NAV_LINKS[0], item.label)}
+                onClick={() => handleNavClick({ page: item.page })}
               >
                 <span>{item.icon}</span>
                 <span>{item.label}</span>

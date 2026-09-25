@@ -7,6 +7,10 @@ import Collections from './pages/Collections';
 import NewArrivals from './pages/NewArrivals';
 import Lookbook from './pages/Lookbook';
 import Sale from './pages/Sale';
+import EveningGowns from './pages/EveningGowns';
+import SilkFestive from './pages/SilkFestive';
+import SummerMaxi from './pages/SummerMaxi';
+import CocktailSparkle from './pages/CocktailSparkle';
 import styles from './App.module.css';
 
 export default function App() {
@@ -38,6 +42,10 @@ export default function App() {
         {activePage === 'new-arrivals' && <NewArrivals />}
         {activePage === 'lookbook' && <Lookbook />}
         {activePage === 'sale' && <Sale />}
+        {activePage === 'evening-gowns' && <EveningGowns />}
+        {activePage === 'silk-festive' && <SilkFestive />}
+        {activePage === 'summer-maxi' && <SummerMaxi />}
+        {activePage === 'cocktail-sparkle' && <CocktailSparkle />}
       </main>
 
       <Footer />
