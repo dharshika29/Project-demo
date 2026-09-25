@@ -1,12 +1,32 @@
-/* Promo Strip */
+/* Promo Strip (Marquee) */
 .promoStrip {
   background: linear-gradient(90deg, #1a1200, #2e2000, #1a1200);
   border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 0.45rem 1rem;
-  text-align: center;
+  padding: 0.5rem 0;
   font-size: 0.82rem;
   color: #f3e5ab;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+
+.marqueeContent {
+  display: flex;
+  gap: 3rem;
+  animation: scrollText 20s linear infinite;
+  min-width: max-content;
+}
+
+.marqueeContent span {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+}
+
+@keyframes scrollText {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* Navbar Main */

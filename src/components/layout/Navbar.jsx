@@ -78,9 +78,18 @@ export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFil
 
   return (
     <>
-      {/* Top Promo Strip */}
+      {/* Top Promo Strip (Marquee) */}
       <div className={styles.promoStrip}>
-        <span>🎁 Free Express Shipping on Orders Over $150 &nbsp;|&nbsp; Use code <strong>AURA40</strong> for 40% OFF</span>
+        <div className={styles.marqueeContent}>
+          <span>🎁 Free Express Shipping on Orders Over $150 &nbsp;|&nbsp; Use code <strong>AURA40</strong> for 40% OFF</span>
+          <span>✦ Luxury Redefined</span>
+          <span>🎁 Free Express Shipping on Orders Over $150 &nbsp;|&nbsp; Use code <strong>AURA40</strong> for 40% OFF</span>
+          <span>✦ Elegance in Every Stitch</span>
+          <span>🎁 Free Express Shipping on Orders Over $150 &nbsp;|&nbsp; Use code <strong>AURA40</strong> for 40% OFF</span>
+          <span>✦ Luxury Redefined</span>
+          <span>🎁 Free Express Shipping on Orders Over $150 &nbsp;|&nbsp; Use code <strong>AURA40</strong> for 40% OFF</span>
+          <span>✦ Elegance in Every Stitch</span>
+        </div>
       </div>
 
       <header className={styles.navbar}>
