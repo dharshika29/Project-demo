@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Home from './pages/Home';
-import About from './pages/About';
 import Collections from './pages/Collections';
 import NewArrivals from './pages/NewArrivals';
 import Lookbook from './pages/Lookbook';
@@ -38,7 +37,6 @@ export default function App() {
             setWishlistCount={setWishlistCount}
           />
         )}
-        {activePage === 'about' && <About />}
         {activePage === 'collections' && <Collections />}
         {activePage === 'new-arrivals' && <NewArrivals />}
         {activePage === 'lookbook' && <Lookbook />}

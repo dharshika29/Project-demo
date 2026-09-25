@@ -45,7 +45,6 @@ const COLLECTIONS_DROPDOWN = [
 const NAV_LINKS = [
   { label: 'Home', page: 'home' },
   { label: 'Collections', page: 'collections', hasDropdown: true },
-  { label: 'About Us', page: 'about' },
   { label: 'Contact Us', page: 'contact' }
 ];
 
@@ -224,12 +223,6 @@ export default function Navbar({ activePage, setActivePage, cartCount = 0, wishl
               </button>
             ))}
             <div className={styles.mobileDivider} />
-            <button
-              className={styles.mobileNavLink}
-              onClick={() => handleNavClick({ page: 'about' })}
-            >
-              📖 About Us
-            </button>
             <button
               className={styles.mobileNavLink}
               onClick={() => handleNavClick({ page: 'contact' })}
