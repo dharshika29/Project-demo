@@ -96,7 +96,7 @@ export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFil
         <div className={styles.navbarContainer}>
 
           {/* Brand */}
-          <div className={styles.navbarBrand} onClick={() => setActivePage('home')}>
+          <div className={styles.navbarBrand} onClick={() => navigate('/')}>
             <div className={styles.navbarLogoIcon}>✦</div>
             <div className={styles.brandGroup}>
               <span className={styles.brandTitle}>AURA</span>
