@@ -1,5 +1,6 @@
 @import './variables.css';
 
+/* ── Reset & Base ── */
 *,
 *::before,
 *::after {
@@ -8,23 +9,36 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+}
+
 html,
 body {
   min-height: 100vh;
   background-color: var(--bg-main);
   color: var(--text-primary);
   font-family: var(--font-body);
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
-  transition: background-color var(--transition-normal), color var(--transition-normal);
+  line-height: 1.65;
+  transition: background-color 0.35s ease, color 0.35s ease;
 }
 
+/* ── Premium Typography Defaults ── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   color: var(--text-primary);
-  font-weight: 700;
-  line-height: 1.25;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 a {
@@ -34,7 +48,7 @@ a {
 }
 
 a:hover {
-  color: var(--secondary);
+  color: var(--primary-light);
 }
 
 button {
@@ -42,13 +56,63 @@ button {
   cursor: pointer;
   border: none;
   background: none;
+  outline: none;
 }
 
-code {
-  font-family: 'Fira Code', monospace;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 0.15rem 0.4rem;
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
   border-radius: var(--radius-sm);
-  font-size: 0.9em;
-  color: var(--secondary);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Premium Scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.25);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.5);
+}
+
+/* ── Text Selection ── */
+::selection {
+  background: rgba(201, 168, 76, 0.25);
+  color: var(--text-primary);
+}
+
+/* ── Monospace / Code ── */
+code {
+  font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.88em;
+  color: var(--primary-light);
+  letter-spacing: 0.02em;
+}
+
+/* ── Utility: Visually Hidden ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
