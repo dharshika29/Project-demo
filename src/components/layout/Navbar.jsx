@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
 
 const COLLECTIONS_DROPDOWN = [
@@ -52,6 +53,7 @@ const NAV_LINKS = [
 
 export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
   const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const activePage = location.pathname.substring(1) || 'home';
@@ -183,6 +185,22 @@ export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFil
               <button className={styles.iconBtn}>🤍</button>
               {wishlistCount > 0 && (
                 <span className={styles.iconBadge}>{wishlistCount}</span>
+              )}
+            </div>
+
+            {/* User Profile */}
+            <div className={styles.iconBtnWrapper} title="Account">
+              {user ? (
+                <button 
+                  className={styles.iconBtn} 
+                  onClick={() => navigate('/profile')} 
+                  title="Profile & Settings"
+                  style={{ backgroundColor: '#333', color: '#fff', fontSize: '12px', fontWeight: 'bold' }}
+                >
+                  {user.name.substring(0, 2).toUpperCase()}
+                </button>
+              ) : (
+                <button className={styles.iconBtn} onClick={() => navigate('/login')} title="Login / Register">👤</button>
               )}
             </div>
 

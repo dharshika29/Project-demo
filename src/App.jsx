@@ -13,6 +13,10 @@ import SilkFestive from './pages/SilkFestive';
 import SummerMaxi from './pages/SummerMaxi';
 import CocktailSparkle from './pages/CocktailSparkle';
 import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import ProtectedRoute from './components/ProtectedRoute';
 import styles from './App.module.css';
 
 export default function App() {
@@ -57,6 +61,13 @@ export default function App() {
           <Route path="/summer-maxi" element={<SummerMaxi />} />
           <Route path="/cocktail-sparkle" element={<CocktailSparkle />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
         </Routes>
       </main>
 
