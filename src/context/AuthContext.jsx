@@ -14,18 +14,38 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = (email, password) => {
-    // Real app la inga thaan Backend API call pannuvom
-    // Example-ku dummy user data create panrom
-    const fakeUser = { name: email.split('@')[0], email };
-    setUser(fakeUser);
-    localStorage.setItem('user', JSON.stringify(fakeUser)); // Save to storage
+    const storedUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    
+    // Check if credentials match
+    const existingUser = storedUsers.find(u => u.email === email && u.password === password);
+    
+    if (existingUser) {
+      const { password: _, ...userSession } = existingUser;
+      setUser(userSession);
+      localStorage.setItem('user', JSON.stringify(userSession));
+      return { success: true };
+    } else {
+      return { success: false, message: 'Invalid email or password. Are you registered?' };
+    }
   };
 
   const register = (name, email, password) => {
-    // Backend API call for register inga varum
-    const newUser = { name, email };
-    setUser(newUser);
-    localStorage.setItem('user', JSON.stringify(newUser)); // Auto login after register
+    const storedUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    
+    // Check if email already exists
+    if (storedUsers.some(u => u.email === email)) {
+      return { success: false, message: 'User already exists with this email!' };
+    }
+
+    const newUser = { name, email, password };
+    storedUsers.push(newUser);
+    localStorage.setItem('registeredUsers', JSON.stringify(storedUsers));
+    
+    const { password: _, ...userSession } = newUser;
+    setUser(userSession);
+    localStorage.setItem('user', JSON.stringify(userSession));
+    
+    return { success: true };
   };
 
   const logout = () => {

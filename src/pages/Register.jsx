@@ -7,13 +7,19 @@ export default function Register() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { register } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(name, email, password); // Context moolama register panrom
-    navigate('/'); // Register panna odane home anupiduvom
+    setError('');
+    const result = register(name, email, password); 
+    if (result.success) {
+      navigate('/'); 
+    } else {
+      setError(result.message);
+    }
   };
 
   return (
@@ -21,6 +27,7 @@ export default function Register() {
       <div className={styles.authBox}>
         <h1 className={styles.authTitle}>Create Account</h1>
         <p className={styles.authSubtitle}>Join Aura Couture today</p>
+        {error && <div style={{ color: '#d9534f', backgroundColor: '#f9d6d5', padding: '10px', borderRadius: '4px', marginBottom: '16px', textAlign: 'center', fontSize: '14px', fontWeight: 'bold' }}>{error}</div>}
         <form className={styles.authForm} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="name">Full Name</label>

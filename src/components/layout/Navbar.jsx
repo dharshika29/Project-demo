@@ -45,10 +45,13 @@ const COLLECTIONS_DROPDOWN = [
 ];
 
 const NAV_LINKS = [
-  { label: 'Home', page: 'home' },
-  { label: 'Collections', page: 'collections', hasDropdown: true },
-  { label: 'About Us', page: 'about' },
-  { label: 'Contact Us', page: 'contact' }
+  { label: 'Home', page: 'home', icon: '🏠' },
+  { label: 'Collections', page: 'collections', hasDropdown: true, icon: '✨' },
+  { label: 'New Arrivals', page: 'new-arrivals', icon: '🆕' },
+  { label: 'Sale', page: 'sale', badge: 'Sale', icon: '🏷️' },
+  { label: 'Blog', page: 'blog', icon: '📰' },
+  { label: 'About Us', page: 'about', icon: '📖' },
+  { label: 'Contact Us', page: 'contact', icon: '💬' }
 ];
 
 export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
@@ -235,38 +238,16 @@ export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFil
         {/* Mobile Menu Drawer */}
         {mobileMenuOpen && (
           <div className={styles.mobileMenu}>
-            {/* Mobile - Collection categories directly */}
-            <button
-              className={styles.mobileNavLink}
-              onClick={() => handleNavClick({ page: 'home' })}
-            >
-              🏠 Home
-            </button>
-            <div className={styles.mobileDivider} />
-            <div className={styles.mobileSectionLabel}>Collections</div>
-            {COLLECTIONS_DROPDOWN.map((item) => (
+            {NAV_LINKS.map((item) => (
               <button
                 key={item.label}
-                className={`${styles.mobileNavLink} ${item.highlight ? styles.mobileNavLinkHighlight : ''}`}
+                className={`${styles.mobileNavLink} ${activePage === item.page ? styles.mobileNavLinkHighlight : ''}`}
                 onClick={() => handleNavClick({ page: item.page })}
               >
                 <span>{item.icon}</span>
                 <span>{item.label}</span>
               </button>
             ))}
-            <div className={styles.mobileDivider} />
-            <button
-              className={styles.mobileNavLink}
-              onClick={() => handleNavClick({ page: 'about' })}
-            >
-              📖 About Us
-            </button>
-            <button
-              className={styles.mobileNavLink}
-              onClick={() => handleNavClick({ page: 'contact' })}
-            >
-              💬 Contact Us
-            </button>
           </div>
         )}
       </header>

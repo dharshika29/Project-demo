@@ -14,13 +14,57 @@
    -------------------------------------------------------------------------- */
 .heroBanner {
   position: relative;
-  padding: 5rem 1.5rem 3.5rem;
+  padding: 3.5rem 1.5rem 3.75rem;
   text-align: center;
-  background: radial-gradient(circle at 50% 20%, rgba(197, 155, 39, 0.12) 0%, transparent 70%);
+  background-color: var(--bg-main);
   border-bottom: 1px solid var(--border-color);
+  box-shadow: inset 0 -30px 40px var(--bg-main);
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroBgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  opacity: 0.28; /* Light opacity as requested */
+  filter: saturate(1.1) brightness(0.95);
+  transition: opacity var(--transition-normal);
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(
+      180deg, 
+      rgba(12, 15, 23, 0.65) 0%, 
+      rgba(12, 15, 23, 0.35) 50%, 
+      rgba(12, 15, 23, 0.75) 80%, 
+      var(--bg-main) 100%
+    ),
+    radial-gradient(
+      ellipse at 50% 35%, 
+      rgba(194, 155, 39, 0.12) 0%, 
+      rgba(12, 15, 23, 0.45) 60%, 
+      var(--bg-main) 100%
+    );
+  pointer-events: none;
 }
 
 .heroContent {
+  position: relative;
+  z-index: 2;
   max-width: 800px;
   margin: 0 auto;
 }
@@ -32,19 +76,26 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--primary);
-  margin-bottom: 1rem;
+  color: var(--gold-light);
+  margin-bottom: 1.25rem;
   font-weight: 600;
+  padding: 0.4rem 1.15rem;
+  background: rgba(12, 15, 23, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 .breadcrumbLink {
-  color: var(--text-muted);
+  color: var(--text-secondary);
   cursor: pointer;
   transition: color var(--transition-fast);
 }
 
 .breadcrumbLink:hover {
-  color: var(--primary);
+  color: var(--gold);
 }
 
 .heroTitle {
@@ -54,20 +105,23 @@
   line-height: 1.15;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
-  color: var(--text-primary);
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85), 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 .heroTitleHighlight {
-  color: var(--primary);
+  color: var(--gold-light);
   font-style: italic;
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
 }
 
 .heroSubtitle {
   font-size: 1.15rem;
-  color: var(--text-secondary);
+  color: #f1f5f9;
   line-height: 1.6;
   max-width: 650px;
   margin: 0 auto;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
 }
 
 /* --------------------------------------------------------------------------
@@ -583,7 +637,20 @@
    Light Theme Adjustments
    -------------------------------------------------------------------------- */
 [data-theme='light'] .heroBanner {
-  background: radial-gradient(circle at 50% 20%, rgba(197, 155, 39, 0.1) 0%, transparent 70%);
+  background-color: #0c0f17;
+  box-shadow: inset 0 -30px 40px #0c0f17;
+}
+
+[data-theme='light'] .heroBgImage {
+  opacity: 0.24;
+}
+
+[data-theme='light'] .heroTitle {
+  color: #ffffff;
+}
+
+[data-theme='light'] .heroSubtitle {
+  color: #f1f5f9;
 }
 
 [data-theme='light'] .frontImageWrapper {
@@ -641,7 +708,7 @@
 
 @media (max-width: 640px) {
   .heroBanner {
-    padding: 3.5rem 1rem 2.5rem;
+    padding: 2.25rem 1rem 2.5rem;
   }
 
   .knowMoreSection {

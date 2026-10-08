@@ -1,0 +1,1060 @@
+/* ==========================================================================
+   Aura Couture - Contact Page Styling
+   Clean, luxury fashion atelier aesthetic with dark & light mode support
+   ========================================================================== */
+
+.contactPage {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   1. Hero Banner & Breadcrumb Header
+   -------------------------------------------------------------------------- */
+.heroBanner {
+  position: relative;
+  padding: 4.5rem 1.5rem 4rem;
+  text-align: center;
+  background: radial-gradient(circle at 50% 10%, rgba(197, 155, 39, 0.15) 0%, rgba(12, 15, 23, 0.98) 75%),
+              linear-gradient(180deg, rgba(18, 24, 38, 0.6) 0%, var(--bg-main) 100%);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: inset 0 -30px 40px var(--bg-main);
+  overflow: hidden;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-light);
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  padding: 0.4rem 1.15rem;
+  background: rgba(12, 15, 23, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
+.breadcrumbLink {
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumbLink:hover {
+  color: var(--gold);
+}
+
+.heroBadge {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
+}
+
+.heroTitleHighlight {
+  color: var(--gold-light);
+  font-style: italic;
+  text-shadow: 0 0 25px rgba(212, 175, 55, 0.45);
+}
+
+.heroSubtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   2. Quick Contact Channels Grid
+   -------------------------------------------------------------------------- */
+.channelSection {
+  max-width: 1240px;
+  margin: -2.5rem auto 3rem;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+
+.channelGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.channelCard {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.channelCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.channelCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-focus);
+  background: var(--bg-card-hover);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+.channelCard:hover::before {
+  opacity: 1;
+}
+
+.channelIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(197, 155, 39, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.15rem;
+  color: var(--gold);
+}
+
+.channelIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.channelTitle {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.channelDetail {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 0.25rem;
+}
+
+.channelSubtext {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* --------------------------------------------------------------------------
+   3. Main Section: 2-Column Form & VIP Experience
+   -------------------------------------------------------------------------- */
+.mainSection {
+  max-width: 1240px;
+  margin: 0 auto 5rem;
+  padding: 0 1.5rem;
+}
+
+.layoutGrid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.95fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* --- Left: Contact & Appointment Form --- */
+.formContainer {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+}
+
+.formHeader {
+  margin-bottom: 2rem;
+}
+
+.formEyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.formTitle {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.6rem;
+}
+
+.formSubtitle {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.inputLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.requiredStar {
+  color: var(--accent);
+}
+
+.inputField,
+.selectField,
+.textareaField {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: rgba(12, 15, 23, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.inputField:focus,
+.selectField:focus,
+.textareaField:focus {
+  border-color: var(--gold);
+  background: rgba(18, 24, 38, 0.85);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.inputField::placeholder,
+.textareaField::placeholder {
+  color: var(--text-muted);
+}
+
+.selectField option {
+  background-color: #0c0f17;
+  color: #f8fafc;
+}
+
+.textareaField {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Radio / Service preference pill selector */
+.preferenceGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.preferenceOptions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.preferencePill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 0.5rem;
+  background: rgba(12, 15, 23, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+  text-align: center;
+}
+
+.preferencePill:hover {
+  border-color: rgba(212, 175, 55, 0.4);
+  color: var(--text-primary);
+}
+
+.preferencePillActive {
+  background: rgba(197, 155, 39, 0.18);
+  border-color: var(--gold);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.submitBtn {
+  margin-top: 0.75rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--primary) 100%);
+  color: #0c0f17;
+  border: none;
+  border-radius: var(--radius-full);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(197, 155, 39, 0.35);
+  transition: all var(--transition-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(197, 155, 39, 0.5);
+  background: linear-gradient(135deg, #dfb945 0%, #c59b27 100%);
+}
+
+.submitBtn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.submitIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Success Message Box */
+.successBox {
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.successIconWrap {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: rgba(5, 150, 105, 0.15);
+  border: 2px solid var(--emerald);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald);
+}
+
+.successTitle {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.successText {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+}
+
+.resetBtn {
+  padding: 0.75rem 1.8rem;
+  background: transparent;
+  color: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.resetBtn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  color: #ffffff;
+}
+
+/* --- Right: The VIP Experience & Atelier Info --- */
+.vipContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.vipCard {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.vipCardHeader {
+  margin-bottom: 1.5rem;
+}
+
+.vipBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.vipTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.vipBenefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.vipBenefitItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.benefitIconWrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(197, 155, 39, 0.15);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.benefitContent h4 {
+  font-size: 0.975rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.benefitContent p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* WhatsApp Instant Concierge Box */
+.whatsappBox {
+  background: linear-gradient(135deg, rgba(20, 83, 45, 0.35) 0%, rgba(12, 15, 23, 0.85) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.whatsappInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.whatsappIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.whatsappIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsappText h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.whatsappText p {
+  font-size: 0.8rem;
+  color: #86efac;
+}
+
+.whatsappBtn {
+  padding: 0.65rem 1.25rem;
+  background: #22c55e;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.whatsappBtn:hover {
+  background: #16a34a;
+  transform: translateY(-2px);
+}
+
+/* Working Hours Card */
+.hoursCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+
+.hoursHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  color: var(--gold);
+}
+
+.hoursHeader h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.hoursList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.6rem;
+}
+
+.hoursRow:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.hoursDay {
+  color: var(--text-secondary);
+}
+
+.hoursTime {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.appointmentOnlyBadge {
+  font-size: 0.75rem;
+  color: var(--gold);
+  background: rgba(197, 155, 39, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   4. Global Flagship Boutiques
+   -------------------------------------------------------------------------- */
+.flagshipSection {
+  border-top: 1px solid var(--border-color);
+  background: linear-gradient(180deg, rgba(18, 24, 38, 0.4) 0%, var(--bg-main) 100%);
+  padding: 5rem 1.5rem;
+}
+
+.flagshipContainer {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+}
+
+.sectionEyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.sectionDesc {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.locationTabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.locationTabBtn {
+  padding: 0.65rem 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.locationTabBtn:hover {
+  border-color: var(--gold);
+  color: var(--text-primary);
+}
+
+.locationTabActive {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #0c0f17;
+  font-weight: 700;
+  box-shadow: 0 4px 16px var(--primary-glow);
+}
+
+.locationContentCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.locationDetails {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.locationBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+.locationName {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.locationInfoList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-bottom: 2rem;
+}
+
+.locationInfoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.locationInfoIcon {
+  color: var(--gold);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.locationActionBtns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.appointmentBookBtn {
+  padding: 0.8rem 1.6rem;
+  background: var(--gold);
+  color: #0c0f17;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.appointmentBookBtn:hover {
+  background: #f3e5ab;
+  transform: translateY(-2px);
+}
+
+.directionsBtn {
+  padding: 0.8rem 1.6rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.directionsBtn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.locationVisual {
+  position: relative;
+  min-height: 380px;
+}
+
+.locationImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.locationOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--bg-card) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Concierge FAQ Accordion
+   -------------------------------------------------------------------------- */
+.faqSection {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem 6rem;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faqItem {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.faqItemOpen {
+  border-color: var(--border-focus);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.faqQuestionBtn {
+  width: 100%;
+  padding: 1.35rem 1.75rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.faqQuestionBtn:hover {
+  color: var(--gold);
+}
+
+.faqChevron {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--gold);
+}
+
+.faqChevronOpen {
+  transform: rotate(180deg);
+}
+
+.faqAnswer {
+  padding: 0 1.75rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.975rem;
+  line-height: 1.7;
+}
+
+/* --------------------------------------------------------------------------
+   6. Light Theme Specific Adjustments
+   -------------------------------------------------------------------------- */
+[data-theme='light'] .heroBanner {
+  background: radial-gradient(circle at 50% 10%, rgba(197, 155, 39, 0.12) 0%, #ffffff 80%);
+  box-shadow: inset 0 -30px 40px #f8fafc;
+}
+
+[data-theme='light'] .breadcrumb {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(197, 155, 39, 0.4);
+  color: #92400e;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='light'] .heroTitle {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+[data-theme='light'] .inputField,
+[data-theme='light'] .selectField,
+[data-theme='light'] .textareaField {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+  color: #0f172a;
+}
+
+[data-theme='light'] .selectField option {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+[data-theme='light'] .preferencePill {
+  background: #f1f5f9;
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #334155;
+}
+
+[data-theme='light'] .preferencePillActive {
+  background: rgba(197, 155, 39, 0.15);
+  border-color: var(--primary);
+  color: #854d0e;
+}
+
+[data-theme='light'] .locationOverlay {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, transparent 60%);
+}
+
+/* --------------------------------------------------------------------------
+   7. Responsive Media Queries
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .channelGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .layoutGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .locationContentCard {
+    grid-template-columns: 1fr;
+  }
+
+  .locationVisual {
+    min-height: 280px;
+    order: -1;
+  }
+
+  .locationOverlay {
+    background: linear-gradient(180deg, transparent 50%, var(--bg-card) 100%);
+  }
+}
+
+@media (max-width: 640px) {
+  .heroBanner {
+    padding: 3rem 1rem 3.5rem;
+  }
+
+  .channelGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .channelSection {
+    margin-top: -1.5rem;
+  }
+
+  .formContainer {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .preferenceOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .submitBtn {
+    width: 100%;
+  }
+
+  .whatsappBox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .whatsappBtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .locationDetails {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .locationActionBtns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .appointmentBookBtn,
+  .directionsBtn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .faqQuestionBtn {
+    padding: 1.15rem 1.25rem;
+    font-size: 1rem;
+  }
+
+  .faqAnswer {
+    padding: 0 1.25rem 1.25rem;
+  }
+}

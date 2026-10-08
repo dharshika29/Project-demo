@@ -17,6 +17,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
+import Blog from './pages/Blog';
 import styles from './App.module.css';
 
 export default function App() {
@@ -68,6 +69,7 @@ export default function App() {
               <Profile />
             </ProtectedRoute>
           } />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </main>
 

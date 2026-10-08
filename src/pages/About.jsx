@@ -19,6 +19,16 @@ export default function About() {
           1. Hero / Breadcrumb Header
           -------------------------------------------------------------------- */}
       <section className={styles.heroBanner}>
+        {/* Collage background image with light opacity */}
+        <div className={styles.heroBackground} aria-hidden="true">
+          <img
+            src="/about-hero-bg.png"
+            alt="Aura Couture Heritage Collection Collaboration"
+            className={styles.heroBgImage}
+          />
+          <div className={styles.heroOverlay} />
+        </div>
+
         <div className={styles.heroContent}>
           <div className={styles.breadcrumb}>
             <span

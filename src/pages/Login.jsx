@@ -6,13 +6,19 @@ import styles from './Login.module.css';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password); // Context moolama login panrom
-    navigate('/');
+    setError('');
+    const result = login(email, password); 
+    if (result.success) {
+      navigate('/');
+    } else {
+      setError(result.message);
+    }
   };
 
   return (
@@ -20,6 +26,7 @@ export default function Login() {
       <div className={styles.authBox}>
         <h1 className={styles.authTitle}>Welcome Back</h1>
         <p className={styles.authSubtitle}>Sign in to your account</p>
+        {error && <div style={{ color: '#d9534f', backgroundColor: '#f9d6d5', padding: '10px', borderRadius: '4px', marginBottom: '16px', textAlign: 'center', fontSize: '14px', fontWeight: 'bold' }}>{error}</div>}
         <form className={styles.authForm} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <label htmlFor="email">Email</label>
