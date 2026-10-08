@@ -13,6 +13,7 @@ import SilkFestive from './pages/SilkFestive';
 import SummerMaxi from './pages/SummerMaxi';
 import CocktailSparkle from './pages/CocktailSparkle';
 import Contact from './pages/Contact';
+import Blog from './pages/Blog';
 import styles from './App.module.css';
 
 export default function App() {
@@ -57,6 +58,7 @@ export default function App() {
           <Route path="/summer-maxi" element={<SummerMaxi />} />
           <Route path="/cocktail-sparkle" element={<CocktailSparkle />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </main>
 

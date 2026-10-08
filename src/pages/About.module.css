@@ -49,13 +49,13 @@
     linear-gradient(
       180deg, 
       rgba(12, 15, 23, 0.65) 0%, 
-      rgba(12, 15, 23, 0.35) 40%, 
+      rgba(12, 15, 23, 0.35) 50%, 
       rgba(12, 15, 23, 0.75) 80%, 
       var(--bg-main) 100%
     ),
     radial-gradient(
       ellipse at 50% 35%, 
-      rgba(197, 155, 39, 0.12) 0%, 
+      rgba(194, 155, 39, 0.12) 0%, 
       rgba(12, 15, 23, 0.45) 60%, 
       var(--bg-main) 100%
     );
