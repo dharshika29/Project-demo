@@ -18,6 +18,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Blog from './pages/Blog';
+import ProductDetail from './pages/ProductDetail';
 import styles from './App.module.css';
 
 export default function App() {
@@ -68,6 +69,14 @@ export default function App() {
             <ProtectedRoute>
               <Profile />
             </ProtectedRoute>
+          } />
+          <Route path="/product/:id" element={
+            <ProductDetail
+              cartCount={cartCount}
+              setCartCount={setCartCount}
+              wishlistCount={wishlistCount}
+              setWishlistCount={setWishlistCount}
+            />
           } />
           <Route path="/blog" element={<Blog />} />
         </Routes>

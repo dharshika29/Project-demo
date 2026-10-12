@@ -41,7 +41,7 @@ const PRODUCTS = [
     rating: 4.7,
     reviews: 48,
     tag: 'Bestseller',
-    image: 'https://images.unsplash.com/photo-1589465885857-44edb59bbff2?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=800&q=80',
     colors: ['#8b5cf6', '#4c1d95', '#000000'],
     sizes: ['XS', 'S', 'M', 'L'],
     description: 'A structural masterpiece featuring a boned corset bodice and a liquid satin draping skirt.'
@@ -795,7 +795,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
               <div
                 key={dress.id}
                 className={styles.productCard}
-                onClick={() => setQuickViewDress(dress)}
+                onClick={() => navigate(`/product/${dress.id}`)}
               >
                 {/* Image Container with Badges */}
                 <div className={styles.cardImageContainer}>
