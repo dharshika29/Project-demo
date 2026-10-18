@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getProductById, PRODUCTS } from '../data/products';
+import { useCart } from '../context/CartContext';
 import styles from './ProductDetail.module.css';
 
 export default function ProductDetail({ cartCount, setCartCount, wishlistCount, setWishlistCount }) {
@@ -8,6 +9,7 @@ export default function ProductDetail({ cartCount, setCartCount, wishlistCount, 
   const navigate = useNavigate();
 
   const product = getProductById(id);
+  const { addToCart } = useCart();
 
   // States
   const [selectedImg, setSelectedImg] = useState(product.image);
@@ -29,13 +31,19 @@ export default function ProductDetail({ cartCount, setCartCount, wishlistCount, 
   }, [id, product]);
 
   const handleAddToCart = () => {
+    addToCart(product, selectedSize, selectedColor?.name, quantity);
     if (setCartCount) {
       setCartCount((prev) => prev + quantity);
     }
-    setAddedNotification(true);
-    setTimeout(() => {
-      setAddedNotification(false);
-    }, 3500);
+    navigate('/cart');
+  };
+
+  const handleBuyNow = () => {
+    addToCart(product, selectedSize, selectedColor?.name, quantity);
+    if (setCartCount) {
+      setCartCount((prev) => prev + quantity);
+    }
+    navigate('/checkout');
   };
 
   const handleToggleWishlist = () => {
@@ -62,6 +70,12 @@ export default function ProductDetail({ cartCount, setCartCount, wishlistCount, 
               <strong>Added to Shopping Bag:</strong> {quantity}x {product.name} ({selectedSize})
             </div>
           </div>
+          <button
+            className={styles.toastViewCartBtn}
+            onClick={() => navigate('/cart')}
+          >
+            View Bag &amp; Checkout ➔
+          </button>
           <button
             className={styles.toastCloseBtn}
             onClick={() => setAddedNotification(false)}
@@ -259,42 +273,54 @@ export default function ProductDetail({ cartCount, setCartCount, wishlistCount, 
                   </div>
                 )}
 
-                {/* Quantity & CTA Row */}
+                {/* Quantity & CTA Area */}
                 <div className={styles.actionBlock}>
-                  <div className={styles.quantityPicker}>
+                  <div className={styles.primaryActionRow}>
+                    <div className={styles.quantityPicker}>
+                      <button
+                        className={styles.qtyBtn}
+                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                        aria-label="Decrease quantity"
+                      >
+                        −
+                      </button>
+                      <span className={styles.qtyValue}>{quantity}</span>
+                      <button
+                        className={styles.qtyBtn}
+                        onClick={() => setQuantity((q) => q + 1)}
+                        aria-label="Increase quantity"
+                      >
+                        +
+                      </button>
+                    </div>
+
                     <button
-                      className={styles.qtyBtn}
-                      onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                      aria-label="Decrease quantity"
+                      className={styles.addToBagBtn}
+                      onClick={handleAddToCart}
                     >
-                      −
+                      <span className={styles.bagEmoji}>🛍️</span>
+                      <span className={styles.addToBagText}>Add to Shopping Bag</span>
+                      <span className={styles.addToBagSep}>•</span>
+                      <span className={styles.addToBagPrice}>${product.price * quantity}</span>
                     </button>
-                    <span className={styles.qtyValue}>{quantity}</span>
+
                     <button
-                      className={styles.qtyBtn}
-                      onClick={() => setQuantity((q) => q + 1)}
-                      aria-label="Increase quantity"
+                      className={`${styles.wishlistIconBtn} ${isWishlisted ? styles.wishlistedActive : ''}`}
+                      onClick={handleToggleWishlist}
+                      aria-label="Save to Wishlist"
+                      title={isWishlisted ? 'Saved in Wishlist' : 'Add to Wishlist'}
                     >
-                      +
+                      <span>{isWishlisted ? '♥' : '♡'}</span>
                     </button>
                   </div>
 
                   <button
-                    className={styles.addToBagBtn}
-                    onClick={handleAddToCart}
+                    className={styles.buyNowBtn}
+                    onClick={handleBuyNow}
+                    title="Instant White-Glove Checkout"
                   >
-                    <span>Add to Shopping Bag</span>
-                    <span>•</span>
-                    <span>${product.price * quantity}</span>
-                  </button>
-
-                  <button
-                    className={`${styles.wishlistIconBtn} ${isWishlisted ? styles.wishlistedActive : ''}`}
-                    onClick={handleToggleWishlist}
-                    aria-label="Save to Wishlist"
-                    title={isWishlisted ? 'Saved in Wishlist' : 'Add to Wishlist'}
-                  >
-                    <span>{isWishlisted ? '♥' : '♡'}</span>
+                    <span className={styles.expressBolt}>⚡</span>
+                    <span>Express White-Glove Checkout ➔</span>
                   </button>
                 </div>
 

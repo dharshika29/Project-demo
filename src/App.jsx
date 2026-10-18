@@ -19,6 +19,16 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import Blog from './pages/Blog';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import OrderSuccess from './pages/OrderSuccess';
+import ScrollToTop from './components/common/ScrollToTop';
+import CustomerCare from './pages/CustomerCare';
+import Bespoke from './pages/Bespoke';
+import Sustainability from './pages/Sustainability';
+import Careers from './pages/Careers';
+import Press from './pages/Press';
+import Legal from './pages/Legal';
 import styles from './App.module.css';
 
 export default function App() {
@@ -28,6 +38,7 @@ export default function App() {
 
   return (
     <div className={styles.appLayout}>
+      <ScrollToTop />
       <Navbar
         cartCount={cartCount}
         wishlistCount={wishlistCount}
@@ -79,6 +90,34 @@ export default function App() {
             />
           } />
           <Route path="/blog" element={<Blog />} />
+
+          {/* Shopping Bag & Checkout Flow */}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/bag" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/order-success" element={<OrderSuccess />} />
+          <Route path="/order-confirmation" element={<OrderSuccess />} />
+
+          {/* Customer Care & Support Hub */}
+          <Route path="/customer-care" element={<CustomerCare />} />
+          <Route path="/help" element={<CustomerCare />} />
+          <Route path="/size-guide" element={<CustomerCare initialTab="size-guide" />} />
+          <Route path="/shipping" element={<CustomerCare initialTab="shipping" />} />
+          <Route path="/returns" element={<CustomerCare initialTab="returns" />} />
+          <Route path="/care-guide" element={<CustomerCare initialTab="care-guide" />} />
+          <Route path="/faq" element={<CustomerCare initialTab="faq" />} />
+          <Route path="/track-order" element={<CustomerCare initialTab="track-order" />} />
+
+          {/* Maison & Company Pages */}
+          <Route path="/bespoke" element={<Bespoke />} />
+          <Route path="/sustainability" element={<Sustainability />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/press" element={<Press />} />
+
+          {/* Legal Pages */}
+          <Route path="/privacy" element={<Legal defaultTab="privacy" />} />
+          <Route path="/terms" element={<Legal defaultTab="terms" />} />
+          <Route path="/cookies" element={<Legal defaultTab="cookies" />} />
         </Routes>
       </main>
 

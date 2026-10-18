@@ -1,0 +1,185 @@
+/* ===== SUSTAINABILITY & HERITAGE CHARTER ===== */
+.page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #f5f0e8;
+  padding-bottom: 6rem;
+}
+
+.hero {
+  background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 70%),
+              linear-gradient(180deg, #091312 0%, #080a10 100%);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 4.5rem 2rem 3.5rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.35rem 0.95rem;
+  border-radius: 30px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold, #c9a84c);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #a8a29e;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+}
+
+/* Impact Metrics */
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 5rem;
+}
+
+.metricCard {
+  background: rgba(15, 23, 24, 0.7);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.metricCard:hover {
+  border-color: #34d399;
+  transform: translateY(-3px);
+}
+
+.metricValue {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--gold, #c9a84c);
+  margin-bottom: 0.3rem;
+}
+
+.metricLabel {
+  font-size: 0.88rem;
+  color: #a8a29e;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* 4 Pillars */
+.pillarsSection {
+  margin-bottom: 5rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.pillarCard {
+  background: rgba(13, 17, 26, 0.8);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  transition: all 0.3s;
+}
+
+.pillarCard:hover {
+  border-color: var(--gold, #c9a84c);
+  transform: translateY(-4px);
+}
+
+.pillarIcon {
+  font-size: 2.2rem;
+  margin-bottom: 1.25rem;
+}
+
+.pillarTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.35rem;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+
+.pillarText {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #a8a29e;
+  margin: 0;
+}
+
+/* Artisan Spotlight */
+.artisanSpotlight {
+  background: linear-gradient(135deg, rgba(20, 26, 38, 0.9) 0%, rgba(13, 20, 24, 0.9) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 24px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.artisanImage {
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  max-height: 380px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.artisanQuote {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-style: italic;
+  font-size: 1.4rem;
+  color: #fff;
+  line-height: 1.5;
+  margin: 0 0 1.25rem;
+}
+
+.artisanAuthor {
+  color: var(--gold, #c9a84c);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+.artisanRole {
+  color: #78716c;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 800px) {
+  .artisanSpotlight {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+  }
+}

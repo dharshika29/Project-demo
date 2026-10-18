@@ -16,7 +16,8 @@ export default function Sale() {
       <section style={{ maxWidth: '1320px', margin: '0 auto', padding: '0 2rem' }}>
         <ProductCatalogView
           customProducts={saleProducts}
-          showCategoryFilter={true}
+          showFilterSidebar={false}
+          showCategoryFilter={false}
           breadcrumbs={[
             { label: 'Home', path: '/' },
             { label: 'Collections', path: '/collections' },

@@ -31,7 +31,8 @@ export default function ProductCatalogView({
   filterTitle = '',
   filterSubtitle = '',
   customProducts = null,
-  breadcrumbs = null
+  breadcrumbs = null,
+  showFilterSidebar = true
 }) {
   const navigate = useNavigate();
 
@@ -200,7 +201,7 @@ export default function ProductCatalogView({
             {filterSubtitle && <p className={styles.headerSubtitle}>{filterSubtitle}</p>}
           </div>
 
-          {!breadcrumbs && (
+          {!breadcrumbs && showFilterSidebar && (
             <button
               className={styles.mobileFilterToggle}
               onClick={() => setMobileFilterOpen((prev) => !prev)}
@@ -213,13 +214,14 @@ export default function ProductCatalogView({
       )}
 
       {/* ── Main Two-Column Layout (Left Filter + Right Products) ── */}
-      <div className={styles.twoColumnLayout}>
+      <div className={`${styles.twoColumnLayout} ${!showFilterSidebar ? styles.fullWidthLayout : ''}`}>
         {/* =========================================================================
             LEFT SIDEBAR: LUXURY FILTER CONTROL PANEL
             ========================================================================= */}
-        <aside
-          className={`${styles.filterSidebar} ${mobileFilterOpen ? styles.sidebarOpenMobile : ''}`}
-        >
+        {showFilterSidebar && (
+          <aside
+            className={`${styles.filterSidebar} ${mobileFilterOpen ? styles.sidebarOpenMobile : ''}`}
+          >
           {/* Sidebar Top Title & Reset */}
           <div className={styles.sidebarHeader}>
             <div className={styles.sidebarTitleGroup}>
@@ -442,6 +444,7 @@ export default function ProductCatalogView({
             </div>
           </div>
         </aside>
+        )}
 
         {/* =========================================================================
             RIGHT MAIN: PRODUCT CATALOG & RESULTS GRID
@@ -457,7 +460,7 @@ export default function ProductCatalogView({
               </div>
 
               {/* Active Filter Pills Strip */}
-              {activeCount > 0 && (
+              {showFilterSidebar && activeCount > 0 && (
                 <div className={styles.activePillsStrip}>
                   {showCategoryFilter && selectedCategory !== 'all' && (
                     <span className={styles.activeChip}>

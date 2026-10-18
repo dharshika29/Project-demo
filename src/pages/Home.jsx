@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { PRODUCTS } from '../data/products';
+import { useCart } from '../context/CartContext';
 import styles from './Home.module.css';
 
-const PRODUCTS = [
-  // --- Evening Gowns ---
+/* OLD MOCK DATA REMOVED */
+/*
   {
     id: 1,
     name: 'Emerald Zari Runway Gown',
@@ -346,7 +348,7 @@ const PRODUCTS = [
     sizes: ['XS', 'S', 'M'],
     description: 'A futuristic bodycon dress made from innovative holographic fabric that changes color under light.'
   }
-];
+*/
 
 const CATEGORIES = [
   'All Dresses',
@@ -359,27 +361,50 @@ const CATEGORIES = [
 const BLOG_POSTS = [
   {
     id: 1,
-    tag: 'Style Guide',
-    title: 'How to Style a Silk Gown for a Black-Tie Gala',
-    excerpt: 'Discover the art of accessorising mulberry silk with statement jewellery, evening clutches, and strappy heels for a flawless red-carpet moment.',
-    readTime: '4 min read',
-    image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80'
+    tag: 'Haute Couture',
+    title: 'Metamorphosis: Sculptural Draping & Modern Bridal Couture',
+    excerpt: 'Exploring architectural corsetry and cascading Banarasi silk, as showcased in our Paris Grand Palais presentation.',
+    readTime: '7 min read',
+    image: 'https://media.samyakk.in/pub/media/catalog/product/cache/d47d9b4b8c33f09ac326aed90267cb26/m/a/mauve-pink-sequins-embroidered-net-evening-gown-with-pentagon-neck-ab1604.jpg'
   },
   {
     id: 2,
-    tag: 'Trend Report',
-    title: 'Top 6 Festive Colours Dominating the 2026 Season',
-    excerpt: 'From Royal Crimson to Peacock Teal — our couture directors break down the definitive palette of the season and how to wear each shade.',
+    tag: 'Silk & Festive',
+    title: 'The Return of Banarasi & Zardozi: Artisanal Renaissance',
+    excerpt: 'How century-old Varanasi handloom weaving techniques are captivating modern luxury runways with pure tested gold zari.',
     readTime: '5 min read',
-    image: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=600&q=80'
+    image: 'https://i.pinimg.com/736x/3a/6a/79/3a6a791a0597ad877c77af69ce9541e6.jpg'
   },
   {
     id: 3,
-    tag: 'Care Guide',
-    title: 'The Ultimate Mulberry Silk Care Ritual',
-    excerpt: 'Protect your investment with expert-approved washing, steaming, and storage techniques straight from our Milan atelier.',
-    readTime: '3 min read',
-    image: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80'
+    tag: 'Atelier Craft',
+    title: 'The Sustainable Silk Protocol: Organic Mulberry & Zero-Waste',
+    excerpt: 'Our commitment to conscious luxury: partnering with organic sericulture farms and circular water dye processes across South Asia.',
+    readTime: '5 min read',
+    image: 'https://clothsvilla.com/cdn/shop/files/maroon-silk-chanderi-anarkali-set_1.jpg?format=webp&v=1771675375&width=480'
+  }
+];
+
+const INSTA_LOOKS = [
+  {
+    img: 'https://media.samyakk.in/pub/media/catalog/product/cache/d47d9b4b8c33f09ac326aed90267cb26/b/l/blue-sequins-embroidered-net-designer-gown-with-cape-sleeves-ab1438.jpg',
+    name: 'Blue Sequins Cape Gown',
+    productId: 9
+  },
+  {
+    img: 'https://i.pinimg.com/736x/7c/ab/5b/7cab5b0f6820d5e03ad584aebd0d5311.jpg',
+    name: 'Royal Magenta Anarkali Set',
+    productId: 6
+  },
+  {
+    img: 'https://nolabels.in/cdn/shop/files/sequin_dress_for_women.jpg?v=1786372992&width=1000',
+    name: 'Cocktail Prismatic Sequin Mini',
+    productId: 4
+  },
+  {
+    img: 'https://media.samyakk.in/pub/media/catalog/product/cache/d47d9b4b8c33f09ac326aed90267cb26/d/a/dark-green-sequins-embroidered-net-evening-gown-aa4295.jpg',
+    name: 'Emerald Green Sequins Net Gown',
+    productId: 10
   }
 ];
 
@@ -417,12 +442,17 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [discountClaimed, setDiscountClaimed] = useState(false);
 
-  // Cart Drawer
+  // Cart Drawer & Global Cart Context
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([
-    { ...PRODUCTS[1], qty: 1, selectedSize: 'M' },
-    { ...PRODUCTS[3], qty: 1, selectedSize: 'S' }
-  ]);
+  const {
+    cartItems,
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    cartTotal,
+    cartSubtotal,
+    cartCount: globalCartCount
+  } = useCart();
 
   // FAQ
   const [openFaq, setOpenFaq] = useState(null);
@@ -518,36 +548,30 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
 
   const handleAddToCart = (dress, e) => {
     if (e) e.stopPropagation();
-    const size = selectedSizes[dress.id] || dress.sizes[0];
-    setCartItems(prev => {
-      const existing = prev.find(i => i.id === dress.id && i.selectedSize === size);
-      if (existing) return prev.map(i => i.id === dress.id && i.selectedSize === size ? { ...i, qty: i.qty + 1 } : i);
-      return [...prev, { ...dress, qty: 1, selectedSize: size }];
-    });
-    setCartCount((c) => c + 1);
+    const size = selectedSizes[dress.id] || (dress.sizes ? dress.sizes[0] : 'M');
+    const color = selectedColors[dress.id] || (dress.colors ? dress.colors[0]?.name : 'Signature');
+    addToCart(dress, size, color, 1);
+    if (setCartCount) {
+      setCartCount((c) => c + 1);
+    }
     triggerToast(`Added ${dress.name} (${size}) to Bag! 🛍️`);
     if (quickViewDress) setQuickViewDress(null);
     setCartOpen(true);
   };
 
   const handleRemoveFromCart = (id, size) => {
-    setCartItems(prev => prev.filter(i => !(i.id === id && i.selectedSize === size)));
-    setCartCount(c => Math.max(0, c - 1));
+    removeFromCart(id, size);
+    if (setCartCount) {
+      setCartCount((c) => Math.max(0, c - 1));
+    }
   };
 
   const handleQtyChange = (id, size, delta) => {
-    setCartItems(prev => prev.map(i => {
-      if (i.id === id && i.selectedSize === size) {
-        const newQty = i.qty + delta;
-        if (newQty <= 0) return null;
-        return { ...i, qty: newQty };
-      }
-      return i;
-    }).filter(Boolean));
-    setCartCount(c => Math.max(0, c + delta));
+    updateQuantity(id, size, delta);
+    if (setCartCount) {
+      setCartCount((c) => Math.max(0, c + delta));
+    }
   };
-
-  const cartTotal = cartItems.reduce((sum, i) => sum + i.price * i.qty, 0);
 
   const scrollCarousel = (dir) => {
     if (carouselRef.current) {
@@ -602,7 +626,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                     <div className={styles.cartItemQtyRow}>
                       <button className={styles.qtyBtn} onClick={() => handleQtyChange(item.id, item.selectedSize, -1)}>−</button>
                       <span className={styles.qtyVal}>{item.qty}</span>
-                      <button className={styles.qtyBtn} onClick={() => handleQtyChange(item.id, item.selectedSize, +1)}>+</button>
+                      <button className={styles.qtyBtn} onClick={() => handleQtyChange(item.id, item.selectedSize, 1)}>+</button>
                     </div>
                   </div>
                   <div className={styles.cartItemRight}>
@@ -627,8 +651,34 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                   <span>Total</span>
                   <span className={styles.cartTotal}>${cartTotal}</span>
                 </div>
-                <button className={styles.checkoutBtn}>Proceed to Checkout →</button>
-                <button className={styles.continueShopping} onClick={() => setCartOpen(false)}>Continue Shopping</button>
+                <button
+                  className={styles.checkoutBtn}
+                  onClick={() => {
+                    setCartOpen(false);
+                    navigate('/checkout');
+                  }}
+                >
+                  Proceed to Haute Checkout →
+                </button>
+                <button
+                  className={styles.checkoutBtn}
+                  style={{
+                    marginTop: '0.6rem',
+                    background: 'rgba(201, 168, 76, 0.15)',
+                    color: '#e8d19a',
+                    border: '1px solid rgba(201, 168, 76, 0.35)',
+                    boxShadow: 'none'
+                  }}
+                  onClick={() => {
+                    setCartOpen(false);
+                    navigate('/cart');
+                  }}
+                >
+                  View Full Shopping Bag 🛍️
+                </button>
+                <button className={styles.continueShopping} onClick={() => setCartOpen(false)}>
+                  Continue Shopping
+                </button>
               </div>
             )}
           </div>
@@ -736,12 +786,17 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
             </div>
 
             {/* Floating Card over the collage */}
-            <div className={styles.floatingProductCard}>
+            <div
+              className={styles.floatingProductCard}
+              onClick={() => navigate('/product/2')}
+              style={{ cursor: 'pointer' }}
+              title="Click to view Royal Banarasi Saree Gown"
+            >
               <div className={styles.floatingBadgeTag}>Runway Exclusive</div>
-              <div className={styles.floatingDressTitle}>Royal Banarasi Saree</div>
+              <div className={styles.floatingDressTitle}>Royal Banarasi Saree Gown</div>
               <div className={styles.floatingPriceRow}>
-                <span className={styles.floatingPrice}>$580</span>
-                <span className={styles.floatingOldPrice}>$750</span>
+                <span className={styles.floatingPrice}>$420</span>
+                <span className={styles.floatingOldPrice}>$550</span>
               </div>
             </div>
 
@@ -786,10 +841,14 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
 
         {/* Product Grid */}
         <div className={styles.productGrid}>
-          {filteredProducts.slice(0, 4).map((dress) => {
+          {filteredProducts.slice(0, 8).map((dress) => {
             const isWishlisted = wishlist.has(dress.id);
-            const activeColor = selectedColors[dress.id] || dress.colors[0];
-            const activeSize = selectedSizes[dress.id] || dress.sizes[0];
+            const activeColor =
+              selectedColors[dress.id] ||
+              (typeof dress.colors?.[0] === 'object'
+                ? dress.colors[0].hex
+                : dress.colors?.[0] || '#c9a84c');
+            const activeSize = selectedSizes[dress.id] || dress.sizes?.[0] || 'M';
 
             return (
               <div
@@ -805,7 +864,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                     className={styles.cardImage}
                     loading="lazy"
                   />
-                  <div className={styles.tagBadge}>{dress.tag}</div>
+                  <div className={styles.tagBadge}>{dress.tag || 'Couture'}</div>
 
                   {/* Wishlist Button */}
                   <button
@@ -839,15 +898,15 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
 
                   <div className={styles.ratingRow}>
                     <span className={styles.starIcon}>★</span>
-                    <span className={styles.ratingVal}>{dress.rating}</span>
-                    <span className={styles.reviewCount}>({dress.reviews})</span>
+                    <span className={styles.ratingVal}>{dress.rating || '4.9'}</span>
+                    <span className={styles.reviewCount}>({dress.reviews || 54})</span>
                   </div>
 
                   {/* Sizes Preview */}
                   <div className={styles.sizeRow} onClick={(e) => e.stopPropagation()}>
                     <span className={styles.sizeLabel}>Sizes:</span>
                     <div className={styles.sizePills}>
-                      {dress.sizes.map((size) => (
+                      {(dress.sizes || ['XS', 'S', 'M', 'L']).map((size) => (
                         <span
                           key={size}
                           className={`${styles.sizePill} ${
@@ -871,7 +930,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                     <div className={styles.priceContainer}>
                       <span className={styles.price}>${dress.price}</span>
                       <span className={styles.oldPrice}>
-                        ${dress.originalPrice}
+                        ${dress.originalPrice || Math.round(dress.price * 1.25)}
                       </span>
                     </div>
 
@@ -889,14 +948,20 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
         </div>
 
         {/* View All Button */}
-        {filteredProducts.length > 4 && (
+        {filteredProducts.length > 8 && (
           <div className={styles.viewAllContainer}>
             <button
               className={styles.btnSecondary}
-              onClick={() => navigate('/collections')}
+              onClick={() => {
+                if (selectedCategory === 'Evening Gowns') navigate('/evening-gowns');
+                else if (selectedCategory === 'Silk & Festive') navigate('/silk-festive');
+                else if (selectedCategory === 'Summer Maxi') navigate('/summer-maxi');
+                else if (selectedCategory === 'Cocktail Sparkle') navigate('/cocktail-sparkle');
+                else navigate('/collections');
+              }}
               style={{ marginTop: '3rem', padding: '1rem 3rem' }}
             >
-              Show More Products ➔
+              Explore All {selectedCategory === 'All Dresses' ? 'Collections' : selectedCategory} ({filteredProducts.length} Silhouettes) ➔
             </button>
           </div>
         )}
@@ -951,15 +1016,15 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
             <div className={styles.spotlightActions}>
               <button
                 className={styles.btnPrimary}
-                onClick={() => setQuickViewDress(PRODUCTS[1])}
+                onClick={() => navigate('/product/2')}
               >
-                Claim This Silhouette ($420)
+                Claim This Silhouette ($420) ➔
               </button>
               <button
                 className={styles.btnSecondary}
-                onClick={onNavigateAbout}
+                onClick={() => navigate('/collections')}
               >
-                Project Structure ➔
+                Explore All Collections ➔
               </button>
             </div>
           </div>
@@ -1076,17 +1141,17 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
         <a href="#" className={styles.instaHandle}>Follow us on Instagram ➔</a>
         
         <div className={styles.instaGrid}>
-          {[
-            'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80',
-            'https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80',
-            '/instagram-look-3.jpg',
-            'https://images.unsplash.com/photo-1518049362265-d5b2a6467637?w=600&q=80'
-          ].map((img, i) => (
-            <div key={i} className={styles.instaItem}>
-              <img src={img} alt={`Instagram styled look ${i+1}`} className={styles.instaImage} />
+          {INSTA_LOOKS.map((item, i) => (
+            <div
+              key={i}
+              className={styles.instaItem}
+              onClick={() => navigate(`/product/${item.productId}`)}
+              style={{ cursor: 'pointer' }}
+            >
+              <img src={item.img} alt={item.name} className={styles.instaImage} />
               <div className={styles.instaOverlay}>
                 <span className={styles.instaIcon}>♡</span>
-                <span className={styles.instaShopText}>Shop This Style</span>
+                <span className={styles.instaShopText}>Shop {item.name} ➔</span>
               </div>
             </div>
           ))}
@@ -1107,7 +1172,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
         </div>
         <div className={styles.carouselTrack} ref={carouselRef}>
           {BESTSELLERS.map(dress => (
-            <div key={dress.id} className={styles.carouselCard} onClick={() => setQuickViewDress(dress)}>
+            <div key={dress.id} className={styles.carouselCard} onClick={() => navigate(`/product/${dress.id}`)} style={{ cursor: 'pointer' }}>
               <div className={styles.carouselImgWrapper}>
                 <img src={dress.image} alt={dress.name} className={styles.carouselImg} loading="lazy" />
                 <div className={styles.carouselTag}>{dress.tag}</div>
@@ -1135,7 +1200,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
         </div>
         <div className={styles.blogGrid}>
           {BLOG_POSTS.map(post => (
-            <div key={post.id} className={styles.blogCard}>
+            <div key={post.id} className={styles.blogCard} onClick={() => navigate('/blog')} style={{ cursor: 'pointer' }}>
               <div className={styles.blogImgWrapper}>
                 <img src={post.image} alt={post.title} className={styles.blogImg} loading="lazy" />
                 <span className={styles.blogTag}>{post.tag}</span>
@@ -1145,7 +1210,7 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                 <p className={styles.blogExcerpt}>{post.excerpt}</p>
                 <div className={styles.blogMeta}>
                   <span className={styles.blogReadTime}>🕐 {post.readTime}</span>
-                  <button className={styles.blogReadMore}>Read Article →</button>
+                  <button className={styles.blogReadMore} onClick={(e) => { e.stopPropagation(); navigate('/blog'); }}>Read Article →</button>
                 </div>
               </div>
             </div>
@@ -1159,9 +1224,16 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
           <span className={styles.sizeGuideEmoji}>📏</span>
           <div>
             <h4 className={styles.sizeGuideBannerTitle}>Not Sure About Your Size?</h4>
-            <p className={styles.sizeGuideBannerDesc}>Use our detailed size guide to find your perfect Aura fit — bust, waist, and hip measurements included.</p>
+            <p className={styles.sizeGuideBannerDesc}>
+              Use our interactive atelier size calculator to find your perfect Aura fit — bust, waist, and hip measurements included.
+            </p>
           </div>
-          <button className={styles.sizeGuideBtn} onClick={() => setSizeGuideOpen(true)}>View Size Guide</button>
+          <button
+            className={styles.sizeGuideBtn}
+            onClick={() => navigate('/size-guide')}
+          >
+            Explore Interactive Size Guide ➔
+          </button>
         </div>
       </section>
 
@@ -1304,24 +1376,31 @@ export default function Home({ onNavigateAbout, cartCount, setCartCount }) {
                 <div className={styles.modalOptionGroup}>
                   <label className={styles.optionLabel}>Atelier Color Tone:</label>
                   <div className={styles.modalColorList}>
-                    {quickViewDress.colors.map((c, i) => (
-                      <span
-                        key={i}
-                        className={`${styles.colorDotLg} ${
-                          (selectedColors[quickViewDress.id] ||
-                            quickViewDress.colors[0]) === c
-                            ? styles.colorDotLgActive
-                            : ''
-                        }`}
-                        style={{ backgroundColor: c }}
-                        onClick={() =>
-                          setSelectedColors((prev) => ({
-                            ...prev,
-                            [quickViewDress.id]: c
-                          }))
-                        }
-                      />
-                    ))}
+                    {(quickViewDress.colors || []).map((c, i) => {
+                      const colorHex = typeof c === 'string' ? c : c?.hex || '#c9a84c';
+                      const colorName = typeof c === 'string' ? c : c?.name || '';
+                      return (
+                        <span
+                          key={i}
+                          title={colorName}
+                          className={`${styles.colorDotLg} ${
+                            (selectedColors[quickViewDress.id] ||
+                              (typeof quickViewDress.colors[0] === 'string'
+                                ? quickViewDress.colors[0]
+                                : quickViewDress.colors[0]?.hex)) === colorHex
+                              ? styles.colorDotLgActive
+                              : ''
+                          }`}
+                          style={{ backgroundColor: colorHex }}
+                          onClick={() =>
+                            setSelectedColors((prev) => ({
+                              ...prev,
+                              [quickViewDress.id]: colorHex
+                            }))
+                          }
+                        />
+                      );
+                    })}
                   </div>
                 </div>
 

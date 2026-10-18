@@ -1,0 +1,152 @@
+/* ===== PRESS & MEDIA ROOM ===== */
+.page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #f5f0e8;
+  padding-bottom: 6rem;
+}
+
+.hero {
+  background: radial-gradient(circle at 50% 20%, rgba(201, 168, 76, 0.12) 0%, transparent 70%),
+              linear-gradient(180deg, #0d101a 0%, #080a10 100%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  padding: 4.5rem 2rem 3.5rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 0.35rem 0.95rem;
+  border-radius: 30px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold, #c9a84c);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #a8a29e;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+}
+
+.pressGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4.5rem;
+}
+
+.pressCard {
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+
+.pressCard:hover {
+  border-color: var(--gold, #c9a84c);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.pressMediaHeader {
+  background: rgba(201, 168, 76, 0.06);
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.outletName {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.pressDate {
+  font-size: 0.78rem;
+  color: var(--gold, #c9a84c);
+}
+
+.pressBody {
+  padding: 2rem 1.75rem;
+  flex: 1;
+}
+
+.pressQuote {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #e5e0d8;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.pressSummary {
+  font-size: 0.88rem;
+  color: #a8a29e;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Media Kit Box */
+.mediaKitCard {
+  background: linear-gradient(135deg, rgba(20, 26, 38, 0.9) 0%, rgba(13, 17, 26, 0.9) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 24px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.kitBtn {
+  background: linear-gradient(135deg, #e8d19a 0%, #c9a84c 100%);
+  color: #080a10;
+  font-weight: 700;
+  padding: 0.9rem 2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.kitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4);
+}

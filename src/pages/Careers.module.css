@@ -1,0 +1,196 @@
+/* ===== CAREERS AT AURA MAISON ===== */
+.page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #f5f0e8;
+  padding-bottom: 6rem;
+}
+
+.hero {
+  background: radial-gradient(circle at 50% 20%, rgba(201, 168, 76, 0.12) 0%, transparent 70%),
+              linear-gradient(180deg, #0d101a 0%, #080a10 100%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  padding: 4.5rem 2rem 3.5rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 0.35rem 0.95rem;
+  border-radius: 30px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold, #c9a84c);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #a8a29e;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+}
+
+.perksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 4.5rem;
+}
+
+.perkCard {
+  background: rgba(15, 20, 31, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 18px;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.perkCard:hover {
+  border-color: var(--gold, #c9a84c);
+  transform: translateY(-3px);
+}
+
+.perkIcon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.perkTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.perkText {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #a8a29e;
+  margin: 0;
+}
+
+/* Open Positions */
+.jobsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.jobCard {
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  transition: all 0.25s;
+}
+
+.jobCard:hover {
+  border-color: var(--gold, #c9a84c);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.jobRole {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.35rem;
+  color: #fff;
+  margin: 0 0 0.4rem;
+}
+
+.jobTags {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.jobTag {
+  font-size: 0.78rem;
+  color: #a8a29e;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.applyBtn {
+  background: transparent;
+  border: 1px solid var(--gold, #c9a84c);
+  color: var(--gold, #c9a84c);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.applyBtn:hover {
+  background: var(--gold, #c9a84c);
+  color: #080a10;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modalContent {
+  background: #0d111d;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 540px;
+  width: 100%;
+  position: relative;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: transparent;
+  border: none;
+  color: #a8a29e;
+  font-size: 1.4rem;
+  cursor: pointer;
+}

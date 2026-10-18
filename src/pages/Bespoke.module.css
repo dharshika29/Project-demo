@@ -1,0 +1,226 @@
+/* ===== BESPOKE ATELIER ORDERS ===== */
+.page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #f5f0e8;
+  padding-bottom: 6rem;
+}
+
+.hero {
+  background: radial-gradient(circle at 50% 20%, rgba(201, 168, 76, 0.15) 0%, transparent 70%),
+              linear-gradient(180deg, #0d111d 0%, #080a10 100%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  padding: 4.5rem 2rem 3.5rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  padding: 0.35rem 0.95rem;
+  border-radius: 30px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.4rem, 4.8vw, 3.8rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold, #c9a84c);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #a8a29e;
+  max-width: 720px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+}
+
+/* 4-Step Bespoke Journey */
+.processSection {
+  margin-bottom: 5rem;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2.2rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.sectionSub {
+  color: #a8a29e;
+  font-size: 0.95rem;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.75rem;
+}
+
+.stepCard {
+  background: rgba(15, 20, 31, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 20px;
+  padding: 2.25rem 1.75rem;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.stepCard:hover {
+  border-color: var(--gold, #c9a84c);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.stepIndex {
+  font-size: 2.8rem;
+  font-weight: 800;
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  color: rgba(201, 168, 76, 0.2);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.stepTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.25rem;
+  color: #fff;
+  margin: 0 0 0.6rem;
+}
+
+.stepDesc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #a8a29e;
+  margin: 0;
+}
+
+/* Booking Consultation Form */
+.bookingCard {
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 24px;
+  padding: 3.5rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.bookingCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold, #c9a84c), transparent);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.fullSpan {
+  grid-column: span 2;
+}
+
+.formGroup label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  margin-bottom: 0.5rem;
+}
+
+.formInput, .formSelect, .formTextarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  color: #fff;
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.formInput:focus, .formSelect:focus, .formTextarea:focus {
+  border-color: var(--gold, #c9a84c);
+}
+
+.formSelect option {
+  background: #0d111d;
+  color: #fff;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #e8d19a 0%, #c9a84c 100%);
+  color: #080a10;
+  border: none;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.25s;
+  width: 100%;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201, 168, 76, 0.4);
+}
+
+.successToast {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .bookingCard {
+    padding: 2rem 1.5rem;
+  }
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+  .fullSpan {
+    grid-column: span 1;
+  }
+}

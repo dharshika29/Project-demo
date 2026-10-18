@@ -1,0 +1,834 @@
+/* ===== CUSTOMER CARE & SERVICES HUB ===== */
+.page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #f5f0e8;
+  padding-bottom: 6rem;
+}
+
+/* Header Banner */
+.headerSection {
+  background: radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.12) 0%, transparent 70%),
+              linear-gradient(180deg, #0d101a 0%, #080a10 100%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 3.5rem 2rem 2.5rem;
+  text-align: center;
+}
+
+.headerInner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 0.35rem 0.9rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 500;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold, #c9a84c);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #a8a29e;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+}
+
+/* Navigation Tabs */
+.tabsNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.tabBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(20, 26, 38, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  color: #b8b2a8;
+  padding: 0.65rem 1.25rem;
+  border-radius: 30px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.tabBtn:hover {
+  border-color: var(--gold, #c9a84c);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.tabBtnActive {
+  background: linear-gradient(135deg, #e8d19a 0%, #c9a84c 100%);
+  color: #080a10 !important;
+  font-weight: 700;
+  border-color: #c9a84c;
+  box-shadow: 0 4px 18px rgba(201, 168, 76, 0.35);
+}
+
+/* Container */
+.container {
+  max-width: 1180px;
+  margin: 3.5rem auto 0;
+  padding: 0 2rem;
+}
+
+/* Card Wrapper */
+.tabContentCard {
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.tabContentCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.6), transparent);
+}
+
+/* Tab Header */
+.tabHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding-bottom: 1.75rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.tabTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 2rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 0.4rem;
+}
+
+.tabDesc {
+  color: #a8a29e;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* ──────────────────────────────────
+   1. SIZE GUIDE TAB
+────────────────────────────────── */
+.unitToggle {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 30px;
+  padding: 0.25rem;
+}
+
+.unitBtn {
+  background: transparent;
+  border: none;
+  color: #a8a29e;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.unitBtnActive {
+  background: var(--gold, #c9a84c);
+  color: #080a10;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  margin: 1.5rem 0 3rem;
+}
+
+.luxuryTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.luxuryTable th {
+  background: rgba(201, 168, 76, 0.08);
+  color: var(--gold, #c9a84c);
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+}
+
+.luxuryTable td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.9rem;
+  color: #e5e0d8;
+}
+
+.luxuryTable tr:hover td {
+  background: rgba(201, 168, 76, 0.04);
+}
+
+.highlightCell {
+  color: var(--gold, #c9a84c) !important;
+  font-weight: 700;
+}
+
+/* Size Calculator Box */
+.calculatorBox {
+  background: linear-gradient(135deg, rgba(20, 26, 38, 0.9) 0%, rgba(13, 17, 26, 0.9) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.calcTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.35rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.calcSubtitle {
+  font-size: 0.88rem;
+  color: #a8a29e;
+  margin: 0 0 1.5rem;
+}
+
+.calcGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.calcInputGroup label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  margin-bottom: 0.4rem;
+}
+
+.calcInput {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.calcInput:focus {
+  border-color: var(--gold, #c9a84c);
+}
+
+.calcActionBtn {
+  background: linear-gradient(135deg, #c9a84c 0%, #9a7830 100%);
+  color: #080a10;
+  border: none;
+  padding: 0.85rem 1.8rem;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calcActionBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4);
+}
+
+.calcResultBox {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.calcResultBadge {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--gold, #c9a84c);
+  font-family: var(--font-heading, 'Playfair Display', serif);
+}
+
+/* ──────────────────────────────────
+   2. SHIPPING & DELIVERY TAB
+────────────────────────────────── */
+.shippingPillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.pillarCard {
+  background: rgba(20, 26, 38, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.3s;
+}
+
+.pillarCard:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-3px);
+}
+
+.pillarIcon {
+  font-size: 2rem;
+  color: var(--gold, #c9a84c);
+  margin-bottom: 1rem;
+}
+
+.pillarTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.2rem;
+  color: #fff;
+  margin: 0 0 0.5rem;
+}
+
+.pillarText {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #a8a29e;
+  margin: 0;
+}
+
+.deliveryTimelineBox {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.timelineHeading {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 1.25rem;
+}
+
+.countryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.countryCard {
+  background: rgba(20, 26, 38, 0.8);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.countryFlag {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.countryName {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 0.25rem;
+}
+
+.countryTime {
+  color: var(--gold, #c9a84c);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin: 0 0 0.25rem;
+}
+
+.countryCarrier {
+  font-size: 0.76rem;
+  color: #78716c;
+  margin: 0;
+}
+
+/* ──────────────────────────────────
+   3. RETURNS & EXCHANGES TAB
+────────────────────────────────── */
+.returnStepsRow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stepCard {
+  background: rgba(20, 26, 38, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 16px;
+  padding: 1.75rem;
+  position: relative;
+}
+
+.stepNumber {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: rgba(201, 168, 76, 0.18);
+  font-family: var(--font-heading, 'Playfair Display', serif);
+}
+
+.stepTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.15rem;
+  color: #fff;
+  margin: 0 0 0.6rem;
+}
+
+.stepText {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #a8a29e;
+  margin: 0;
+}
+
+.policyHighlights {
+  background: rgba(201, 168, 76, 0.05);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 16px;
+  padding: 1.75rem;
+}
+
+.policyList {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.policyList li {
+  font-size: 0.9rem;
+  color: #e5e0d8;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.checkMark {
+  color: #10b981;
+  font-weight: bold;
+}
+
+/* ──────────────────────────────────
+   4. CARE INSTRUCTIONS TAB
+────────────────────────────────── */
+.fabricGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+
+.fabricCard {
+  background: rgba(20, 26, 38, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 18px;
+  padding: 2rem;
+  transition: all 0.3s;
+}
+
+.fabricCard:hover {
+  border-color: var(--gold, #c9a84c);
+  transform: translateY(-3px);
+}
+
+.fabricBadge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  background: rgba(201, 168, 76, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.fabricTitle {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 0.75rem;
+}
+
+.fabricInstructions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.fabricInstructions li {
+  font-size: 0.86rem;
+  color: #a8a29e;
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.fabricInstructions li::before {
+  content: '✦';
+  color: var(--gold, #c9a84c);
+  font-size: 0.75rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────
+   5. FAQS ACCORDION TAB
+────────────────────────────────── */
+.faqSearchBox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.faqSearchInput {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.faqCategoryPills {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.faqPill {
+  background: rgba(20, 26, 38, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a8a29e;
+  padding: 0.45rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.faqPillActive {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--gold, #c9a84c);
+  color: var(--gold, #c9a84c);
+  font-weight: 600;
+}
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.accordionItem {
+  background: rgba(20, 26, 38, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+
+.accordionItemActive {
+  border-color: rgba(201, 168, 76, 0.4);
+  background: rgba(20, 26, 38, 0.85);
+}
+
+.accordionTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.35rem 1.75rem;
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordionTrigger:hover {
+  color: var(--gold, #c9a84c);
+}
+
+.accordionIcon {
+  font-size: 1.2rem;
+  color: var(--gold, #c9a84c);
+  transition: transform 0.3s;
+}
+
+.accordionItemActive .accordionIcon {
+  transform: rotate(45deg);
+}
+
+.accordionBody {
+  padding: 0 1.75rem 1.5rem;
+  color: #a8a29e;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ──────────────────────────────────
+   6. TRACK ORDER SIMULATOR TAB
+────────────────────────────────── */
+.trackForm {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.trackInput {
+  flex: 1;
+  min-width: 260px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 50px;
+  padding: 0.85rem 1.5rem;
+  color: #fff;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.trackBtn {
+  background: linear-gradient(135deg, #c9a84c 0%, #9a7830 100%);
+  color: #080a10;
+  font-weight: 700;
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.trackBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4);
+}
+
+.trackOrderCard {
+  background: rgba(20, 26, 38, 0.9);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 20px;
+  padding: 2.5rem;
+}
+
+.trackOrderHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.trackOrderId {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.4rem;
+  color: #fff;
+  margin: 0 0 0.25rem;
+}
+
+.trackStatusBadge {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+
+.timelineProgress {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.timelineStep {
+  display: flex;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.stepIndicator {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.1);
+  border: 2px solid rgba(201, 168, 76, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--gold, #c9a84c);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.stepIndicatorActive {
+  background: var(--gold, #c9a84c);
+  color: #080a10;
+  font-weight: 700;
+  border-color: #fff;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.5);
+}
+
+.stepDetail {
+  flex: 1;
+}
+
+.stepName {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+  margin: 0 0 0.2rem;
+}
+
+.stepTime {
+  font-size: 0.8rem;
+  color: #78716c;
+  margin: 0;
+}
+
+/* Concierge Footer Strip */
+.conciergeStrip {
+  margin-top: 3.5rem;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(13, 17, 26, 0.8) 100%);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: 18px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.conciergeText h4 {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.3rem;
+  color: #fff;
+  margin: 0 0 0.3rem;
+}
+
+.conciergeText p {
+  color: #a8a29e;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.conciergeBtn {
+  background: transparent;
+  border: 1px solid var(--gold, #c9a84c);
+  color: var(--gold, #c9a84c);
+  padding: 0.75rem 1.6rem;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.conciergeBtn:hover {
+  background: var(--gold, #c9a84c);
+  color: #080a10;
+}
+
+@media (max-width: 768px) {
+  .tabContentCard {
+    padding: 1.75rem 1.25rem;
+  }
+  .tabsNav {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.5rem;
+  }
+}

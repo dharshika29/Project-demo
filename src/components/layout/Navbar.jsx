@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 import styles from './Navbar.module.css';
 
 const COLLECTIONS_DROPDOWN = [
@@ -57,6 +58,8 @@ const NAV_LINKS = [
 export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFilter }) {
   const { theme, toggleTheme } = useTheme();
   const { user, logout } = useAuth();
+  const { cartCount: liveCartCount } = useCart();
+  const displayCartCount = liveCartCount !== undefined ? liveCartCount : cartCount;
   const navigate = useNavigate();
   const location = useLocation();
   const activePage = location.pathname.substring(1) || 'home';
@@ -208,10 +211,10 @@ export default function Navbar({ cartCount = 0, wishlistCount = 0, onCategoryFil
             </div>
 
             {/* Shopping Bag */}
-            <div className={styles.iconBtnWrapper} title="Shopping Bag">
-              <button className={styles.iconBtn}>🛍️</button>
-              {cartCount > 0 && (
-                <span className={styles.iconBadge}>{cartCount}</span>
+            <div className={styles.iconBtnWrapper} title="Shopping Bag" onClick={() => navigate('/cart')}>
+              <button className={styles.iconBtn} aria-label="Shopping Bag">🛍️</button>
+              {displayCartCount > 0 && (
+                <span className={styles.iconBadge}>{displayCartCount}</span>
               )}
             </div>
 

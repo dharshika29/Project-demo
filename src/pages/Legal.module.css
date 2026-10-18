@@ -1,0 +1,230 @@
+/* ===== LEGAL, PRIVACY & COOKIE CENTER ===== */
+.page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #f5f0e8;
+  padding-bottom: 6rem;
+}
+
+.hero {
+  background: radial-gradient(circle at 50% 20%, rgba(201, 168, 76, 0.1) 0%, transparent 70%),
+              linear-gradient(180deg, #0d101a 0%, #080a10 100%);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  padding: 4rem 2rem 3rem;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 0.35rem 0.95rem;
+  border-radius: 30px;
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: clamp(2.3rem, 4.5vw, 3.6rem);
+  font-weight: 500;
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+.title em {
+  font-style: italic;
+  color: var(--gold, #c9a84c);
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #a8a29e;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+
+.tabsNav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.tabBtn {
+  background: rgba(20, 26, 38, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  color: #b8b2a8;
+  padding: 0.65rem 1.4rem;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.tabBtn:hover {
+  border-color: var(--gold, #c9a84c);
+  color: #fff;
+}
+
+.tabBtnActive {
+  background: linear-gradient(135deg, #e8d19a 0%, #c9a84c 100%);
+  color: #080a10 !important;
+  font-weight: 700;
+  border-color: #c9a84c;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 3.5rem auto 0;
+  padding: 0 2rem;
+}
+
+.legalCard {
+  background: rgba(13, 17, 26, 0.85);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 24px;
+  padding: 3.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  position: relative;
+}
+
+.legalCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold, #c9a84c), transparent);
+}
+
+.legalHeading {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.6rem;
+  color: #fff;
+  margin: 2rem 0 0.75rem;
+}
+
+.legalHeading:first-of-type {
+  margin-top: 0;
+}
+
+.legalParagraph {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #b8b2a8;
+  margin: 0 0 1.25rem;
+}
+
+/* Cookie Settings */
+.cookieItem {
+  background: rgba(20, 26, 38, 0.6);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cookieInfo h4 {
+  font-family: var(--font-heading, 'Playfair Display', serif);
+  font-size: 1.15rem;
+  color: #fff;
+  margin: 0 0 0.35rem;
+}
+
+.cookieInfo p {
+  font-size: 0.88rem;
+  color: #a8a29e;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.toggleSwitch {
+  position: relative;
+  width: 50px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.toggleSwitch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: 0.3s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.toggleSwitch input:checked + .slider {
+  background-color: var(--gold, #c9a84c);
+}
+
+.toggleSwitch input:checked + .slider:before {
+  transform: translateX(22px);
+  background-color: #080a10;
+}
+
+.lockedBadge {
+  font-size: 0.72rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.saveCookiesBtn {
+  background: linear-gradient(135deg, #e8d19a 0%, #c9a84c 100%);
+  color: #080a10;
+  font-weight: 700;
+  padding: 0.9rem 2.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.2s;
+}
+
+.saveCookiesBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4);
+}
+
+@media (max-width: 768px) {
+  .legalCard {
+    padding: 2rem 1.5rem;
+  }
+}
