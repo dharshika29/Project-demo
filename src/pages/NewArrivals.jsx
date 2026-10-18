@@ -66,7 +66,7 @@ export default function NewArrivals() {
           gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))',
           gap: '2rem'
         }}>
-          {PRODUCTS.slice(0, 8).map((item) => (
+          {PRODUCTS.slice(0, 14).map((item) => (
             <div
               key={item.id}
               onClick={() => navigate(`/product/${item.id}`)}
@@ -129,30 +129,47 @@ export default function NewArrivals() {
                 </span>
               </div>
 
-              <div style={{ padding: '1.4rem' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.3rem' }}>
+              <div style={{
+                padding: '1.4rem',
+                display: 'flex',
+                flexDirection: 'column',
+                flexGrow: 1
+              }}>
+                <div style={{
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  color: 'var(--primary)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  marginBottom: '0.4rem'
+                }}>
                   {item.category}
                 </div>
                 <h3 style={{
                   fontFamily: 'var(--font-serif)',
-                  fontSize: '1.3rem',
+                  fontSize: '1.25rem',
                   fontWeight: 600,
-                  marginBottom: '0.5rem',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis'
+                  lineHeight: '1.35',
+                  marginBottom: '0.6rem',
+                  color: 'var(--text-primary)',
+                  minHeight: '2.7rem',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  overflow: 'hidden'
                 }}>
                   {item.name}
                 </h3>
                 <p style={{
                   fontSize: '0.84rem',
                   color: 'var(--text-secondary)',
-                  lineHeight: '1.45',
-                  marginBottom: '1rem',
+                  lineHeight: '1.5',
+                  marginBottom: '1.25rem',
                   display: '-webkit-box',
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',
-                  overflow: 'hidden'
+                  overflow: 'hidden',
+                  flexGrow: 1
                 }}>
                   {item.description}
                 </p>
@@ -162,13 +179,14 @@ export default function NewArrivals() {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   borderTop: '1px solid var(--border-color)',
-                  paddingTop: '0.85rem'
+                  paddingTop: '0.9rem',
+                  marginTop: 'auto'
                 }}>
-                  <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)' }}>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                     ★ {item.rating} ({item.reviews})
                   </span>
                   <span style={{
-                    fontSize: '0.78rem',
+                    fontSize: '0.8rem',
                     fontWeight: 700,
                     color: 'var(--primary-light)',
                     textTransform: 'uppercase',

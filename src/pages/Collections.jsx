@@ -118,6 +118,31 @@ const COLLECTIONS_DATA = [
 export default function Collections() {
   const navigate = useNavigate();
   const [selectedQuickView, setSelectedQuickView] = useState(null);
+  const [activeCategory, setActiveCategory] = useState('all');
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [sortBy, setSortBy] = useState('featured');
+
+  const CATEGORY_TABS = [
+    { id: 'all', label: 'All Silhouettes', count: PRODUCTS.length },
+    { id: 'evening-gowns', label: 'Evening Gowns', count: PRODUCTS.filter((p) => p.categorySlug === 'evening-gowns').length },
+    { id: 'silk-festive', label: 'Silk & Festive', count: PRODUCTS.filter((p) => p.categorySlug === 'silk-festive').length },
+    { id: 'summer-maxi', label: 'Summer Maxi', count: PRODUCTS.filter((p) => p.categorySlug === 'summer-maxi').length },
+    { id: 'cocktail-sparkle', label: 'Cocktail Sparkle', count: PRODUCTS.filter((p) => p.categorySlug === 'cocktail-sparkle').length }
+  ];
+
+  const filteredProducts = PRODUCTS.filter((item) => {
+    const matchesCat = activeCategory === 'all' || item.categorySlug === activeCategory;
+    const matchesSearch = !searchKeyword.trim() || 
+      item.name.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+      (item.fabric && item.fabric.toLowerCase().includes(searchKeyword.toLowerCase()));
+    return matchesCat && matchesSearch;
+  }).sort((a, b) => {
+    if (sortBy === 'price-low') return a.price - b.price;
+    if (sortBy === 'price-high') return b.price - a.price;
+    if (sortBy === 'rating') return b.rating - a.rating;
+    return 0; // featured
+  });
 
   return (
     <div className={styles.collectionsPage}>
@@ -252,6 +277,126 @@ export default function Collections() {
                 </article>
               ))}
             </div>
+        </div>
+      </section>
+
+      {/* ── 4. Curated Atelier Silhouettes (All Products Showcase) ── */}
+      <section className={styles.atelierProductsSection}>
+        <div className={styles.atelierProductsContainer}>
+          <div className={styles.productsSectionHeader}>
+            <div className={styles.productsHeaderLeft}>
+              <span className={styles.productsMiniPill}>✦ ARCHIVAL SILHOUETTES CATALOGUE ✦</span>
+              <h2 className={styles.productsMainTitle}>
+                Explore All Atelier <span className={styles.goldText}>Products</span>
+              </h2>
+              <p className={styles.productsSubtitle}>
+                Browse our complete portfolio of handcrafted red-carpet gowns, heritage Banarasi silks, resort maxis, and cocktail silhouettes. Click any piece to inspect fabric specifications and bespoke sizing.
+              </p>
+            </div>
+
+            {/* Search and Sort Controls */}
+            <div className={styles.controlsRow}>
+              <div className={styles.searchBar}>
+                <span className={styles.searchIcon}>🔍</span>
+                <input
+                  type="text"
+                  placeholder="Search silhouettes, silk..."
+                  value={searchKeyword}
+                  onChange={(e) => setSearchKeyword(e.target.value)}
+                  className={styles.searchInput}
+                />
+                {searchKeyword && (
+                  <button className={styles.clearSearchBtn} onClick={() => setSearchKeyword('')}>✕</button>
+                )}
+              </div>
+
+              <div className={styles.sortWrapper}>
+                <span className={styles.sortLabel}>Sort:</span>
+                <select
+                  className={styles.sortSelect}
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                >
+                  <option value="featured">Featured Curations</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated ★</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Category Filter Pills */}
+          <div className={styles.filterPillsRow}>
+            {CATEGORY_TABS.map((tab) => (
+              <button
+                key={tab.id}
+                className={`${styles.filterPillBtn} ${activeCategory === tab.id ? styles.filterPillActive : ''}`}
+                onClick={() => setActiveCategory(tab.id)}
+              >
+                <span>{tab.label}</span>
+                <span className={styles.filterCountBadge}>{tab.count}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Products Grid */}
+          {filteredProducts.length === 0 ? (
+            <div className={styles.emptyProducts}>
+              <p>No silhouettes match your search criteria.</p>
+              <button className={styles.resetSearchBtn} onClick={() => { setActiveCategory('all'); setSearchKeyword(''); }}>
+                Reset Filters
+              </button>
+            </div>
+          ) : (
+            <div className={styles.productsGrid}>
+              {filteredProducts.map((item) => (
+                <div
+                  key={item.id}
+                  className={styles.productCard}
+                  onClick={() => navigate(`/product/${item.id}`)}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <div className={styles.productMedia}>
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className={styles.productImage}
+                      onError={(e) => {
+                        e.currentTarget.src = '/hero-dress.jpg';
+                      }}
+                    />
+                    <div className={styles.productMediaOverlay} />
+
+                    <span className={styles.productTagBadge}>{item.tag}</span>
+
+                    <div className={styles.productPricePill}>
+                      <span className={styles.priceVal}>${item.price}</span>
+                      {item.originalPrice && (
+                        <span className={styles.originalPriceVal}>${item.originalPrice}</span>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className={styles.productCardBody}>
+                    <div className={styles.productCategoryLabel}>{item.category}</div>
+                    <h3 className={styles.productName}>{item.name}</h3>
+                    <p className={styles.productDesc}>{item.description}</p>
+
+                    <div className={styles.productFooterRow}>
+                      <span className={styles.productRating}>
+                        ★ {item.rating} ({item.reviews})
+                      </span>
+                      <span className={styles.productDetailLink}>
+                        View Details →
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
