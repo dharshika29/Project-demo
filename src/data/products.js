@@ -94,9 +94,10 @@ export const PRODUCTS = [
     rating: 5.0,
     reviews: 29,
     tag: 'Haute Couture',
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&q=80',
+    image: '/evening-gown-showcase.png',
     gallery: [
-      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?w=800&q=80',
+      '/evening-gown-showcase.png',
+      '/hero-dress.jpg',
       '/collections-collage.png'
     ],
     colors: [

@@ -28,9 +28,10 @@ const SIGNATURE_TAGS = [
 export default function ProductCatalogView({
   initialCategory = 'all',
   showCategoryFilter = true,
-  filterTitle = 'Atelier Silhouettes',
-  filterSubtitle = 'Discover our portfolio of handcrafted luxury couture creations.',
-  customProducts = null
+  filterTitle = '',
+  filterSubtitle = '',
+  customProducts = null,
+  breadcrumbs = null
 }) {
   const navigate = useNavigate();
 
@@ -154,23 +155,62 @@ export default function ProductCatalogView({
 
   return (
     <div className={styles.catalogWrapper}>
-      {/* ── Section Header ── */}
-      <div className={styles.headerBlock}>
-        <div className={styles.headerText}>
-          <span className={styles.headerBadge}>✦ HAUTE COUTURE ARCHIVE ✦</span>
-          <h2 className={styles.headerTitle}>{filterTitle}</h2>
-          <p className={styles.headerSubtitle}>{filterSubtitle}</p>
-        </div>
+      {/* ── Left-Aligned Breadcrumb ── */}
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <div className={styles.breadcrumbBar}>
+          <nav className={styles.breadcrumbNav} aria-label="Breadcrumb">
+            {breadcrumbs.map((crumb, idx) => {
+              const isLast = idx === breadcrumbs.length - 1;
+              return (
+                <React.Fragment key={crumb.label || idx}>
+                  {crumb.path && !isLast ? (
+                    <span
+                      className={styles.breadcrumbLink}
+                      onClick={() => navigate(crumb.path)}
+                      role="link"
+                      tabIndex={0}
+                    >
+                      {crumb.label}
+                    </span>
+                  ) : (
+                    <span className={styles.breadcrumbCurrent}>{crumb.label}</span>
+                  )}
+                  {!isLast && <span className={styles.breadcrumbSeparator}>/</span>}
+                </React.Fragment>
+              );
+            })}
+          </nav>
 
-        {/* Mobile Filter Toggle Button */}
-        <button
-          className={styles.mobileFilterToggle}
-          onClick={() => setMobileFilterOpen((prev) => !prev)}
-        >
-          <span>⚡ Filter & Sort</span>
-          {activeCount > 0 && <span className={styles.mobileBadge}>{activeCount}</span>}
-        </button>
-      </div>
+          <button
+            className={styles.mobileFilterToggle}
+            onClick={() => setMobileFilterOpen((prev) => !prev)}
+            aria-label="Filter and Sort"
+          >
+            <span>⚡ Filters</span>
+            {activeCount > 0 && <span className={styles.mobileBadge}>{activeCount}</span>}
+          </button>
+        </div>
+      )}
+
+      {/* ── Optional Title Header ── */}
+      {filterTitle && (
+        <div className={styles.headerBlock}>
+          <div className={styles.headerText}>
+            <h2 className={styles.headerTitle}>{filterTitle}</h2>
+            {filterSubtitle && <p className={styles.headerSubtitle}>{filterSubtitle}</p>}
+          </div>
+
+          {!breadcrumbs && (
+            <button
+              className={styles.mobileFilterToggle}
+              onClick={() => setMobileFilterOpen((prev) => !prev)}
+            >
+              <span>⚡ Filter & Sort</span>
+              {activeCount > 0 && <span className={styles.mobileBadge}>{activeCount}</span>}
+            </button>
+          )}
+        </div>
+      )}
 
       {/* ── Main Two-Column Layout (Left Filter + Right Products) ── */}
       <div className={styles.twoColumnLayout}>
@@ -184,30 +224,34 @@ export default function ProductCatalogView({
           <div className={styles.sidebarHeader}>
             <div className={styles.sidebarTitleGroup}>
               <span className={styles.sidebarSpark}>✦</span>
-              <h3 className={styles.sidebarTitle}>Refine Atelier</h3>
+              <h3 className={styles.sidebarTitle}>Refine</h3>
               {activeCount > 0 && (
-                <span className={styles.activeFilterCountBadge}>{activeCount} active</span>
+                <span className={styles.activeFilterCountBadge} title={`${activeCount} active filters`}>
+                  {activeCount}
+                </span>
               )}
             </div>
 
-            {activeCount > 0 && (
-              <button
-                className={styles.resetAllBtn}
-                onClick={resetAllFilters}
-                title="Clear all active filters"
-              >
-                Reset All
-              </button>
-            )}
+            <div className={styles.sidebarActions}>
+              {activeCount > 0 && (
+                <button
+                  className={styles.resetAllBtn}
+                  onClick={resetAllFilters}
+                  title="Clear all active filters"
+                >
+                  Reset All
+                </button>
+              )}
 
-            {/* Mobile close 'X' */}
-            <button
-              className={styles.mobileCloseBtn}
-              onClick={() => setMobileFilterOpen(false)}
-              aria-label="Close filters"
-            >
-              ✕
-            </button>
+              {/* Mobile close 'X' */}
+              <button
+                className={styles.mobileCloseBtn}
+                onClick={() => setMobileFilterOpen(false)}
+                aria-label="Close filters"
+              >
+                ✕
+              </button>
+            </div>
           </div>
 
           <div className={styles.sidebarContent}>
