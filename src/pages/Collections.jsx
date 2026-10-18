@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../data/products';
-import ProductCatalogView from '../components/products/ProductCatalogView';
 import styles from './Collections.module.css';
 
 const COLLECTIONS_DATA = [
@@ -256,15 +255,7 @@ export default function Collections() {
         </div>
       </section>
 
-      {/* ── 4. Curated Atelier Silhouettes (Left Sidebar Filter & Product Catalog) ── */}
-      <section className={styles.atelierProductsSection}>
-        <ProductCatalogView
-          initialCategory="all"
-          showCategoryFilter={true}
-          filterTitle="Explore All Atelier Silhouettes"
-          filterSubtitle="Browse our complete portfolio of handcrafted red-carpet gowns, heritage Banarasi silks, resort maxis, and cocktail silhouettes with full left-side filter controls."
-        />
-      </section>
+
 
       {/* ── 5. Atelier Haute Spotlight: Handcrafted Precision Manifesto ── */}
       <section className={styles.atelierManifestoSection}>

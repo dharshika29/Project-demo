@@ -1321,14 +1321,7 @@
   }
 }
 
-/* ==========================================================================
-   4. Atelier All-Products Catalog Showcase Section
-   ========================================================================== */
-.atelierProductsSection {
-  max-width: 1320px;
-  margin: 5.5rem auto 0;
-  padding: 0 2rem;
-}
+
 
 @media (max-width: 768px) {
   .trioGridWrapper {
